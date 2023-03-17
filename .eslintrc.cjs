@@ -37,6 +37,8 @@ module.exports = {
   },
   plugins: ['import', 'react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
+    'arrow-body-style': 'error',
+    'class-methods-use-this': 'off',
     'lines-between-class-members': [
       'error',
       'always',
@@ -53,12 +55,6 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-      },
-    ],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: true,
       },
     ],
     'import/prefer-default-export': 'off',
@@ -79,7 +75,7 @@ module.exports = {
       {
         arrays: 'always-multiline',
         objects: 'always-multiline',
-        imports: 'never',
+        imports: 'always-multiline',
         exports: 'never',
         functions: 'never',
       },
@@ -104,5 +100,6 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     ],
+    'react/prefer-stateless-function': 'off',
   },
 };

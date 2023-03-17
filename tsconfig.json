@@ -5,11 +5,11 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext"
+      "ESNext",
     ],
     "sourceMap": true,
     "removeComments": true,
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -24,7 +24,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "noEmitOnError": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
     "src",
