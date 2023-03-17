@@ -1,10 +1,10 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Route, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 import { Layout } from '../pages/Layout';
 import { NotFound } from '../pages/NotFound';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
