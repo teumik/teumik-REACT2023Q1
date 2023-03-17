@@ -1,12 +1,9 @@
 import './App.scss';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routers/router';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Module 01</h1>
-      <h2>React Components</h2>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export { App };
