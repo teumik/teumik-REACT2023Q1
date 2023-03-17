@@ -1,0 +1,1 @@
+export { SearchLogo } from './SearchLogo';
