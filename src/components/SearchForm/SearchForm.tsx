@@ -35,9 +35,6 @@ class SearchForm extends Component<Partial<ReactPropTypes>, SearchState> {
 
   onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch('https://fakestoreapi.com/products/1')
-      .then((res) => res.json())
-      .then((json) => console.log(json));
   };
 
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
