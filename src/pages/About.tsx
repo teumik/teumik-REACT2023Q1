@@ -5,7 +5,7 @@ class About extends Component {
     return (
       <>
         <h1>About Us</h1>
-        <p>Text</p>
+        <section>Module 01 React Components</section>
       </>
     );
   }
