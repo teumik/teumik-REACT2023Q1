@@ -1,12 +1,12 @@
 import { Component } from 'react';
-import { SearchForm } from '../components/SearchForm';
+import { Products } from '../components/Products';
 
 class Home extends Component {
   render() {
     return (
       <>
         <h1>Home</h1>
-        <SearchForm />
+        <Products />
       </>
     );
   }
