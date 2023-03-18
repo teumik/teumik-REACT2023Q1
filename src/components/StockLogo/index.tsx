@@ -1,0 +1,1 @@
+export { StockLogo } from './StockLogo';

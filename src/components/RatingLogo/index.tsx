@@ -1,0 +1,1 @@
+export { RatingLogo } from './RatingLogo';
