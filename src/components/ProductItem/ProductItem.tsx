@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import style from './productItem.module.scss';
 import { StockLogo } from '../StockLogo';
-import { RatingLogo } from '../RatingLogo';
+import { RatingLogo } from '../RatingLogo/RatingLogo';
 
 export interface Product {
   category: string;

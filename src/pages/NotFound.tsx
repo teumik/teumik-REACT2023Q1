@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { BackButton } from '../components/BackButton';
+import { BackButton } from '../components/BackButton/BackButton';
 
 class NotFound extends Component {
   render() {

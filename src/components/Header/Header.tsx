@@ -1,8 +1,8 @@
 import { Component, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import style from './header.module.scss';
-import { ReactLogo } from '../ReactLogo';
-import { Navigation } from '../Navigation';
+import { ReactLogo } from '../ReactLogo/ReactLogo';
+import { Navigation } from '../Navigation/Navigation';
 import { paths } from '../../routers/paths';
 
 interface HeaderState {

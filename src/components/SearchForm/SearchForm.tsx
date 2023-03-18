@@ -1,6 +1,6 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
 import { Form } from 'react-router-dom';
-import { SearchLogo } from '../SearchLogo';
+import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
 
 interface SearchState {

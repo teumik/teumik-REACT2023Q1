@@ -1,1 +1,0 @@
-export { ReactLogo } from './ReactLogo';

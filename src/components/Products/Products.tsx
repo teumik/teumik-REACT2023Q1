@@ -1,10 +1,9 @@
 import { Component, ReactPropTypes } from 'react';
 import style from './products.module.scss';
-import { ProductItem } from '../ProductItem';
-import { Product } from '../ProductItem/ProductItem';
 import { axios } from '../../utils/axios';
-import { SearchForm } from '../SearchForm';
+import { SearchForm } from '../SearchForm/SearchForm';
 import { paths } from '../../routers/paths';
+import { Product, ProductItem } from '../ProductItem/ProductItem';
 
 interface ProductsState {
   products: Product[];
