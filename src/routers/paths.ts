@@ -1,10 +1,13 @@
 class Paths {
   private paths: Map<string, string>;
+  serverUrl: string;
+
   constructor() {
     this.paths = new Map([
       ['/', 'Home'],
       ['/about', 'About Us'],
     ]);
+    this.serverUrl = 'https://fakestoreapi.com/products';
   }
 
   get = (path: string) => this.paths.get(path);
