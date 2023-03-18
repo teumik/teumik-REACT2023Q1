@@ -1,4 +1,4 @@
-import { Component, ReactPropTypes } from 'react';
+import { ChangeEvent, Component, FormEvent } from 'react';
 import { Form } from 'react-router-dom';
 import { SearchLogo } from '../SearchLogo';
 import style from './searchForm.module.scss';
@@ -7,8 +7,12 @@ interface SearchState {
   search: string;
 }
 
-class SearchForm extends Component<Partial<ReactPropTypes>, SearchState> {
-  constructor(props: Partial<ReactPropTypes>) {
+interface SearchProps {
+  setQuery: (query: string) => void;
+}
+
+class SearchForm extends Component<SearchProps, SearchState> {
+  constructor(props: SearchProps) {
     super(props);
     this.state = {
       search: this.localStorageValue(),
@@ -17,7 +21,9 @@ class SearchForm extends Component<Partial<ReactPropTypes>, SearchState> {
 
   componentDidMount(): void {
     const search = this.localStorageValue();
-    this.setState((state) => ({ ...state, search }));
+    this.setSearch(search);
+    const { setQuery } = this.props;
+    setQuery(search);
     globalThis.addEventListener('beforeunload', this.saveStateToLocalStorage);
   }
 
@@ -33,14 +39,19 @@ class SearchForm extends Component<Partial<ReactPropTypes>, SearchState> {
 
   localStorageValue = () => globalThis.localStorage.getItem('search') || '';
 
-  onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  onSubmit = (event: FormEvent<HTMLFormElement> & { target: HTMLFormElement }) => {
     event.preventDefault();
+    const { value } = event.target.search;
+    const { setQuery } = this.props;
+    setQuery(value);
   };
 
-  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: search } = event.target;
-    this.setState((state) => ({ ...state, search }));
+  onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    this.setSearch(value);
   };
+
+  setSearch = (search: string) => this.setState((state) => ({ ...state, search }));
 
   render() {
     const { search } = this.state;
