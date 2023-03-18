@@ -1,6 +1,6 @@
 class Paths {
   private paths: Map<string, string>;
-  serverUrl: string;
+  readonly serverUrl: string;
 
   constructor() {
     this.paths = new Map([
