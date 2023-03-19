@@ -7,8 +7,8 @@ class Paths {
       ['/', 'Home'],
       ['/about', 'About Us'],
     ]);
-    // this.serverUrl = 'https://fakestoreapi.com/products';
-    this.serverUrl = '';
+    this.serverUrl =
+      'https://raw.githubusercontent.com/teumik/teumik-REACT2023Q1/module01/public/data.json';
   }
 
   get = (path: string) => this.paths.get(path) || '';

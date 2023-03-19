@@ -2,8 +2,8 @@ import { Component, ReactPropTypes } from 'react';
 import style from './products.module.scss';
 import { axios } from '../../utils/axios';
 import { SearchForm } from '../SearchForm/SearchForm';
-import { paths } from '../../routers/Paths';
 import { Product, ProductItem } from '../ProductItem/ProductItem';
+import { paths } from '../../routers/Paths';
 
 interface ProductsState {
   products: Product[];
@@ -23,8 +23,8 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
     };
   }
 
-  componentDidMount(): void {
-    axios<ProductsResponse>('/data.json').then(({ products }) => {
+  async componentDidMount(): Promise<void> {
+    await axios<ProductsResponse>(paths.serverUrl).then(({ products }) => {
       this.setProducts(products);
     });
   }
