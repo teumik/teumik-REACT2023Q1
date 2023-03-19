@@ -51,4 +51,14 @@ describe('Products', () => {
     expect(titles.length).toEqual(2);
     expect(prices.length).toEqual(2);
   });
+  it('Test filter method', async () => {
+    const instance = new Products({});
+    expect(instance.filterProduct('Harry Potter', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('Lived Has', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('8888', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('book', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('77777', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('4.9', fakeProducts[0])).toEqual(true);
+    expect(instance.filterProduct('qwe', fakeProducts[0])).toEqual(null);
+  });
 });
