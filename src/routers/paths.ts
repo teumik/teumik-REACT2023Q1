@@ -10,7 +10,7 @@ class Paths {
     this.serverUrl = 'https://fakestoreapi.com/products';
   }
 
-  get = (path: string) => this.paths.get(path);
+  get = (path: string) => this.paths.get(path) || '';
 }
 
 const paths = new Paths();
