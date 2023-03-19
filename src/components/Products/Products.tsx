@@ -2,7 +2,7 @@ import { Component, ReactPropTypes } from 'react';
 import style from './products.module.scss';
 import { axios } from '../../utils/axios';
 import { SearchForm } from '../SearchForm/SearchForm';
-import { paths } from '../../routers/paths';
+import { paths } from '../../routers/Paths';
 import { Product, ProductItem } from '../ProductItem/ProductItem';
 
 interface ProductsState {
@@ -33,30 +33,30 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
     this.setState((state) => ({ ...state, query }));
   };
 
-  filterProducts = (search: string) => {
-    const query = search.replace(',', '.');
-    const { products } = this.state;
+  filterProduct = (query: string, product: Product) => {
     const regex = new RegExp(`${query}`, 'ig');
-    return products.filter((product) => {
-      if (regex.test(product.title)) return true;
-      if (regex.test(product.description)) return true;
-      if (regex.test(String(product.price))) return true;
-      if (regex.test(product.category)) return true;
-      if (regex.test(String(product.rating.count))) return true;
-      if (regex.test(String(product.rating.rate))) return true;
-      return false;
-    });
+    if (regex.test(product.title)) return true;
+    if (regex.test(product.description)) return true;
+    if (regex.test(String(product.price))) return true;
+    if (regex.test(product.category)) return true;
+    if (regex.test(String(product.rating.count))) return true;
+    if (regex.test(String(product.rating.rate))) return true;
+    return null;
   };
 
   render() {
-    const { query } = this.state;
+    const { products, query: search } = this.state;
+    const query = search.replace(',', '.');
     return (
       <>
         <SearchForm setQuery={this.setQuery} />
         <section className={style.products}>
-          {this.filterProducts(query).map((product) => (
-            <ProductItem key={product.id} product={product} />
-          ))}
+          {products.map(
+            (product) =>
+              this.filterProduct(query, product) && (
+                <ProductItem key={product.id} product={product} />
+              )
+          )}
         </section>
       </>
     );
