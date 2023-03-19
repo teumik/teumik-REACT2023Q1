@@ -2,7 +2,7 @@ import { Component } from 'react';
 import style from './backButton.module.scss';
 
 class BackButton extends Component {
-  back = () => {
+  private back = () => {
     globalThis.history.back();
   };
 
