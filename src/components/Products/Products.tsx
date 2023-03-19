@@ -10,6 +10,10 @@ interface ProductsState {
   query: string;
 }
 
+interface ProductsResponse {
+  products: Product[];
+}
+
 class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
   constructor(props: Partial<ReactPropTypes>) {
     super(props);
@@ -20,7 +24,7 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
   }
 
   componentDidMount(): void {
-    axios<Product[]>(paths.serverUrl).then((products) => {
+    axios<ProductsResponse>('/data.json').then(({ products }) => {
       this.setProducts(products);
     });
   }

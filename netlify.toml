@@ -3,11 +3,3 @@
   to = "/index.html"
   status = 200
   force = false
-
-[[plugins]]
-  package = "@netlify/plugin-functions-install-core"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"

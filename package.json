@@ -12,6 +12,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "dev": "vite",
+    "build2": "vite build",
     "build": "npm run coverage && npm run format && tsc && vite build",
     "preview": "vite preview"
   },

@@ -7,7 +7,8 @@ class Paths {
       ['/', 'Home'],
       ['/about', 'About Us'],
     ]);
-    this.serverUrl = 'https://fakestoreapi.com/products';
+    // this.serverUrl = 'https://fakestoreapi.com/products';
+    this.serverUrl = '';
   }
 
   get = (path: string) => this.paths.get(path) || '';
