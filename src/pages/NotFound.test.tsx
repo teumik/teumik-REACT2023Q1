@@ -9,6 +9,6 @@ describe('NotFound', () => {
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Page not found');
+    ).toHaveTextContent('404');
   });
 });

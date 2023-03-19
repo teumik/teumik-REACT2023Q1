@@ -12,6 +12,6 @@ describe('Products', () => {
     const notFound = paths.get('');
     expect(spy).toHaveBeenCalled();
     expect(home).toEqual('Home');
-    expect(notFound).toEqual('');
+    expect(notFound).toEqual('404');
   });
 });

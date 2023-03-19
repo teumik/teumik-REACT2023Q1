@@ -8,7 +8,10 @@ class NotFound extends Component {
         <div>
           <BackButton />
         </div>
-        <h1>Page not found</h1>
+        <div>
+          <h1>404</h1>
+          <h2>Page Not Found</h2>
+        </div>
       </>
     );
   }

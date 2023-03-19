@@ -11,7 +11,7 @@ class Paths {
       'https://raw.githubusercontent.com/teumik/teumik-REACT2023Q1/module01/public/data.json';
   }
 
-  get = (path: string) => this.paths.get(path) || '';
+  get = (path: string) => this.paths.get(path) || '404';
 }
 
 const paths = new Paths();
