@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './header.module.scss';
 import { ReactLogo } from '../ReactLogo/ReactLogo';
 import { Navigation } from '../Navigation/Navigation';
-import { paths } from '../../routers/paths';
+import { paths } from '../../routers/Paths';
 
 interface HeaderState {
   title: string;
@@ -27,10 +27,9 @@ class Header extends Component<PropsWithChildren, HeaderState> {
   }
 
   getCurrentTitle = () => {
-    const { hash } = globalThis.location;
-    const path = hash.slice(1);
-    const title = paths.get(path);
-    return title || '';
+    const { pathname } = globalThis.location;
+    const title = paths.get(pathname);
+    return title;
   };
 
   titleHandler = () => {
