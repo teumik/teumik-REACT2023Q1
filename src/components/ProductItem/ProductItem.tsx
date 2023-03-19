@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import style from './productItem.module.scss';
-import { StockLogo } from '../StockLogo';
+import { StockLogo } from '../StockLogo/StockLogo';
 import { RatingLogo } from '../RatingLogo/RatingLogo';
 
 export interface Product {
