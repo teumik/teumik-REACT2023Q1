@@ -1,5 +1,4 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
-import { Form } from 'react-router-dom';
 import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
 
@@ -41,9 +40,9 @@ class SearchForm extends Component<SearchProps, SearchState> {
 
   onSubmit = (event: FormEvent<HTMLFormElement> & { target: HTMLFormElement }) => {
     event.preventDefault();
-    const { value } = event.target.search;
+    const { search } = this.state;
     const { setQuery } = this.props;
-    setQuery(value);
+    setQuery(search);
   };
 
   onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +56,7 @@ class SearchForm extends Component<SearchProps, SearchState> {
     const { search } = this.state;
     return (
       <div className={style.container}>
-        <Form onSubmit={this.onSubmit} className={style.form}>
+        <form name="search-form" onSubmit={this.onSubmit} className={style.form}>
           <input
             type="text"
             name="search"
@@ -69,7 +68,7 @@ class SearchForm extends Component<SearchProps, SearchState> {
           <button type="submit" className={style.button}>
             <SearchLogo />
           </button>
-        </Form>
+        </form>
       </div>
     );
   }
