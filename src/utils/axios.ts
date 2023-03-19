@@ -1,7 +1,7 @@
 type Axios = <T>(url: string) => Promise<T>;
 
 const axios: Axios = (url) =>
-  fetch(url, { mode: 'no-cors' })
+  fetch(url)
     .then((res) => res.json())
     .then((json) => json);
 
