@@ -28,7 +28,7 @@ class Header extends Component<PropsWithChildren, HeaderState> {
 
   getCurrentTitle = () => {
     const { pathname } = globalThis.location;
-    const title = paths.get(pathname);
+    const title = paths.getPath(pathname);
     return title;
   };
 

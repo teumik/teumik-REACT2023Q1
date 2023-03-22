@@ -7,9 +7,9 @@ afterEach(() => {
 
 describe('Products', () => {
   it('Test render products', () => {
-    const spy = vi.spyOn(paths, 'get');
-    const home = paths.get('/');
-    const notFound = paths.get('');
+    const spy = vi.spyOn(paths, 'getPath');
+    const home = paths.getPath('/');
+    const notFound = paths.getPath('');
     expect(spy).toHaveBeenCalled();
     expect(home).toEqual('Home');
     expect(notFound).toEqual('404');
