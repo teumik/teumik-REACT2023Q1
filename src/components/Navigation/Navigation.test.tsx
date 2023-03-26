@@ -15,6 +15,6 @@ describe('Navigation', () => {
     links.forEach((link) => {
       fireEvent.click(link);
     });
-    expect(handler).toHaveBeenCalledTimes(2);
+    expect(handler).toHaveBeenCalledTimes(3);
   });
 });
