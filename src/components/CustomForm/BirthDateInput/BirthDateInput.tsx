@@ -21,6 +21,7 @@ class BirthDateInput extends Component<BirthDateInputProps> {
           name="date"
           id="date"
           ref={birthDateRef}
+          data-testid="date"
         />
         {isError && (
           <>
