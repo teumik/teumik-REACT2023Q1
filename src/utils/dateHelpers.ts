@@ -3,7 +3,13 @@ const getCurrentDate = () => {
   return date;
 };
 
-const getParseDate = (date: string) => {
+const getParseDate = (date?: string) => {
+  if (!date)
+    return {
+      year: '',
+      month: '',
+      day: '',
+    };
   const [year, month, day] = date.split('-');
   return {
     year,
