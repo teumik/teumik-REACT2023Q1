@@ -89,7 +89,7 @@ module.exports = {
       {
         blankLine: 'always',
         prev: '*',
-        next: ['interface', 'type', 'function'],
+        next: ['interface', 'type', 'function', 'class'],
       },
     ],
     '@typescript-eslint/keyword-spacing': ['error'],
@@ -102,5 +102,12 @@ module.exports = {
       },
     ],
     'react/prefer-stateless-function': 'off',
+
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        assert: 'either',
+      },
+    ],
   },
 };
