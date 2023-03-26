@@ -20,6 +20,7 @@ class ImageInput extends Component<ImageInputProps> {
           type="file"
           name="image"
           ref={imageRef}
+          data-testid="file"
         />
         {isError && <ErrorMessage message={errorMessage} />}
       </div>
