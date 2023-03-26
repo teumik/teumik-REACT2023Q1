@@ -8,7 +8,11 @@ class BackButton extends Component {
 
   render() {
     return (
-      <button type="button" className={style.button} onClick={this.back}>
+      <button
+        type="button"
+        className={style.button}
+        onClick={this.back}
+      >
         Back
       </button>
     );

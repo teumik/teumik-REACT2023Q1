@@ -29,7 +29,10 @@ class FormCards extends Component<Partial<ReactPropTypes>, FormCardsState> {
         <CustomForm addCard={this.addCard} />
         <section className={style['cards-container']}>
           {cards.map((card) => (
-            <FormCardItem key={Math.random()} cardData={card} />
+            <FormCardItem
+              key={Math.random()}
+              cardData={card}
+            />
           ))}
         </section>
       </>

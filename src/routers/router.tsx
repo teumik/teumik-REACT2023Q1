@@ -7,11 +7,26 @@ import { Forms } from '../pages/Forms';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="forms" element={<Forms />} />
-      <Route path="*" element={<NotFound />} />
+    <Route
+      path="/"
+      element={<Layout />}
+    >
+      <Route
+        index
+        element={<Home />}
+      />
+      <Route
+        path="about"
+        element={<About />}
+      />
+      <Route
+        path="forms"
+        element={<Forms />}
+      />
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
     </Route>
   )
 );

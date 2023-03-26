@@ -56,7 +56,11 @@ class SearchForm extends Component<SearchProps, SearchState> {
     const { search } = this.state;
     return (
       <div className={style.container}>
-        <form name="search-form" onSubmit={this.onSubmit} className={style.form}>
+        <form
+          name="search-form"
+          onSubmit={this.onSubmit}
+          className={style.form}
+        >
           <input
             type="text"
             name="search"
@@ -65,7 +69,10 @@ class SearchForm extends Component<SearchProps, SearchState> {
             value={search}
             onChange={this.onChange}
           />
-          <button type="submit" className={style.button}>
+          <button
+            type="submit"
+            className={style.button}
+          >
             <SearchLogo />
           </button>
         </form>

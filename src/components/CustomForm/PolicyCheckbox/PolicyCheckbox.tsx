@@ -17,7 +17,12 @@ class PolicyCheckbox extends Component<PolicyCheckboxProps> {
     return (
       <>
         <div className={styleName}>
-          <input type="checkbox" name="agreement" id="agreement" ref={policyRef} />
+          <input
+            type="checkbox"
+            name="agreement"
+            id="agreement"
+            ref={policyRef}
+          />
           <label htmlFor="agreement">I accept personal data processing</label>
         </div>
         {isError && (

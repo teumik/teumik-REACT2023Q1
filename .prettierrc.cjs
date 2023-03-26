@@ -6,4 +6,5 @@ module.exports = {
   trailingComma: 'es5',
   printWidth: 100,
   arrowParens: 'always',
+  singleAttributePerLine: true,
 }

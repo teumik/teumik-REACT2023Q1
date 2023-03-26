@@ -16,7 +16,11 @@ class ImageInput extends Component<ImageInputProps> {
     } = this.props;
     return (
       <div className={styleName}>
-        <input type="file" name="image" ref={imageRef} />
+        <input
+          type="file"
+          name="image"
+          ref={imageRef}
+        />
         {isError && <ErrorMessage message={errorMessage} />}
       </div>
     );

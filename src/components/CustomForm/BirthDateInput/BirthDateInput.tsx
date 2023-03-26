@@ -16,7 +16,12 @@ class BirthDateInput extends Component<BirthDateInputProps> {
     return (
       <>
         <label htmlFor="date">Birth Date:</label>
-        <input type="date" name="date" id="date" ref={birthDateRef} />
+        <input
+          type="date"
+          name="date"
+          id="date"
+          ref={birthDateRef}
+        />
         {isError && (
           <>
             <span />

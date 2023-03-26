@@ -19,7 +19,13 @@ class FullNameInput extends Component<FullNameInputProps> {
     return (
       <>
         <label htmlFor="firstName">First Name:</label>
-        <input type="text" name="firstName" id="firstName" placeholder="John" ref={firstNameRef} />
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="John"
+          ref={firstNameRef}
+        />
         {isErrorFirst && (
           <>
             <span />
@@ -27,7 +33,13 @@ class FullNameInput extends Component<FullNameInputProps> {
           </>
         )}
         <label htmlFor="lastName">Last Name:</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Doe" ref={lastNameRef} />
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Doe"
+          ref={lastNameRef}
+        />
         {isErrorLast && (
           <>
             <span />

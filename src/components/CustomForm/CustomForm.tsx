@@ -221,21 +221,35 @@ class CustomForm extends Component<CustomFormProps, CustomFormState> {
     } = this.state;
     const { firstName, lastName, birthDate, genders, country, image, policy } = this.refsProps;
     return (
-      <form className={style.form} onSubmit={this.submit} ref={this.formRef}>
+      <form
+        className={style.form}
+        onSubmit={this.submit}
+        ref={this.formRef}
+      >
         <FullNameInput
           firstNameRef={firstName}
           lastNameRef={lastName}
           firstError={firstNameError}
           lastError={lastNameError}
         />
-        <BirthDateInput birthDateRef={birthDate} error={birthDateError} />
-        <CountrySelect countryRef={country} error={countryError} />
+        <BirthDateInput
+          birthDateRef={birthDate}
+          error={birthDateError}
+        />
+        <CountrySelect
+          countryRef={country}
+          error={countryError}
+        />
         <GenderRadio
           styleName={style['radio-container']}
           genderRef={genders}
           error={gendersError}
         />
-        <ImageInput styleName={style['file-container']} imageRef={image} error={imageError} />
+        <ImageInput
+          styleName={style['file-container']}
+          imageRef={image}
+          error={imageError}
+        />
         <PolicyCheckbox
           styleName={style['policy-container']}
           policyRef={policy}

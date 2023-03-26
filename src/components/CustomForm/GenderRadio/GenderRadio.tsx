@@ -17,17 +17,35 @@ class GenderRadio extends Component<GenderRadioProps> {
     return (
       <>
         <label htmlFor="gender">Gender:</label>
-        <div className={styleName} ref={genderRef}>
+        <div
+          className={styleName}
+          ref={genderRef}
+        >
           <div>
-            <input type="radio" name="gender" id="male" value="male" />
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+            />
             <label htmlFor="male">Male</label>
           </div>
           <div>
-            <input type="radio" name="gender" id="female" value="female" />
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+            />
             <label htmlFor="female">Female</label>
           </div>
           <div>
-            <input type="radio" name="gender" id="other" value="other" />
+            <input
+              type="radio"
+              name="gender"
+              id="other"
+              value="other"
+            />
             <label htmlFor="other">Other</label>
           </div>
         </div>

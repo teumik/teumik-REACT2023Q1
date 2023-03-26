@@ -15,8 +15,16 @@ class CountrySelect extends Component<CountrySelectProps> {
     return (
       <>
         <label htmlFor="country">Country:</label>
-        <select defaultValue="" name="country" id="country" ref={countryRef}>
-          <option value="" disabled>
+        <select
+          defaultValue=""
+          name="country"
+          id="country"
+          ref={countryRef}
+        >
+          <option
+            value=""
+            disabled
+          >
             Choose your country
           </option>
           <option value="belarus">Belarus</option>

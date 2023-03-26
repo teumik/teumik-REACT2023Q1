@@ -24,7 +24,11 @@ class FormCardItem extends Component<FormCardItemProps> {
       <article className={style.card}>
         <picture className={style.picture}>
           <source srcSet={imageFile} />
-          <img src={imageFile} alt={`${firstName} ${lastName}`} loading="lazy" />
+          <img
+            src={imageFile}
+            alt={`${firstName} ${lastName}`}
+            loading="lazy"
+          />
         </picture>
         <h3>
           {firstName} {lastName}

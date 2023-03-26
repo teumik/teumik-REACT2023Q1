@@ -58,7 +58,10 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
           {products.map(
             (product) =>
               this.filterProduct(query, product) && (
-                <ProductItem key={product.id} product={product} />
+                <ProductItem
+                  key={product.id}
+                  product={product}
+                />
               )
           )}
         </section>

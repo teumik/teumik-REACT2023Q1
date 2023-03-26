@@ -35,7 +35,11 @@ class ProductItem extends Component<ProductItemProps> {
       <article className={style.product}>
         <picture className={style.picture}>
           <source srcSet={image} />
-          <img src={image} alt={title} loading="lazy" />
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+          />
         </picture>
         <h3>{title}</h3>
         <p className={style.description}>{description}</p>
