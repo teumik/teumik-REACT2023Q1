@@ -1,6 +1,6 @@
 import { Component, ReactPropTypes } from 'react';
 import style from './products.module.scss';
-import { axios } from '../../utils/axios';
+import { getProductFromFile } from '../../utils/getProductFromFile';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { Product, ProductItem } from '../ProductItem/ProductItem';
 import { paths } from '../../routers/Paths';
@@ -24,7 +24,7 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
   }
 
   async componentDidMount(): Promise<void> {
-    await axios<ProductsResponse>(paths.serverUrl).then(({ products }) => {
+    await getProductFromFile<ProductsResponse>(paths.serverUrl).then(({ products }) => {
       this.setProducts(products);
     });
   }

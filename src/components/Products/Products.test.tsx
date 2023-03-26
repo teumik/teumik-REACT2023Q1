@@ -1,7 +1,7 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { Products } from './Products';
-import { axios } from '../../utils/axios';
+import { getProductFromFile } from '../../utils/getProductFromFile';
 
 const fakeProducts = {
   products: [
@@ -33,8 +33,8 @@ const fakeProducts = {
 };
 
 beforeEach(() => {
-  vi.mock('../../utils/axios');
-  (axios as Mock).mockReturnValue(Promise.resolve(fakeProducts));
+  vi.mock('../../utils/getProductFromFile');
+  (getProductFromFile as Mock).mockReturnValue(Promise.resolve(fakeProducts));
 });
 
 afterEach(() => {
