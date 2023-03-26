@@ -23,8 +23,8 @@ class Products extends Component<Partial<ReactPropTypes>, ProductsState> {
     };
   }
 
-  async componentDidMount(): Promise<void> {
-    await getProductFromFile<ProductsResponse>(paths.serverUrl).then(({ products }) => {
+  componentDidMount() {
+    getProductFromFile<ProductsResponse>(paths.serverUrl).then(({ products }) => {
       this.setProducts(products);
     });
   }
