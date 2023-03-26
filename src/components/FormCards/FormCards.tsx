@@ -16,10 +16,14 @@ class FormCards extends Component<Partial<ReactPropTypes>, FormCardsState> {
   }
 
   addCard = (card: CardItem) => {
-    this.setState((state) => ({
-      ...state,
-      cards: [...state.cards, { ...card }],
-    }));
+    const { cards } = this.state;
+    // this.setState((state) => ({
+    //   ...state,
+    //   cards: [...state.cards, { ...card }],
+    // }));
+    this.setState({
+      cards: [...cards, { ...card }],
+    });
   };
 
   render() {
