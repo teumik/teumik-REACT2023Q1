@@ -13,7 +13,8 @@
     "coverage": "vitest run --coverage",
     "dev": "vite",
     "build": "npm run coverage && npm run format && tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "netlify": "vite build"
   },
   "dependencies": {
     "react": "^18.2.0",
