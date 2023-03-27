@@ -45,7 +45,7 @@ interface CustomFormState {
 
 class CustomForm extends Component<CustomFormProps, CustomFormState> {
   private formRef: RefObject<HTMLFormElement>;
-  private refsProps: RefsLinks;
+  refsProps: RefsLinks;
   private cardProps: CardItem;
 
   constructor(props: CustomFormProps) {
@@ -92,7 +92,7 @@ class CustomForm extends Component<CustomFormProps, CustomFormState> {
     this.setState((state) => ({ ...state, sendStatus }));
   };
 
-  private setTimeoutId = (cb: () => void) => {
+  setTimeoutId = (cb: () => void) => {
     this.setState((state) => ({
       ...state,
       timeoutId: setTimeout(() => {
@@ -110,11 +110,11 @@ class CustomForm extends Component<CustomFormProps, CustomFormState> {
     }));
   };
 
-  private resetForm = () => {
+  resetForm = () => {
     this.formRef.current?.reset();
   };
 
-  private sendFormData = () => {
+  sendFormData = () => {
     const { addCard } = this.props;
     addCard(this.cardProps);
     this.setSendStatus(true);
@@ -125,20 +125,20 @@ class CustomForm extends Component<CustomFormProps, CustomFormState> {
     });
   };
 
-  private setImageFile = (): Promise<boolean> => {
+  setImageFile = (): Promise<boolean> => {
     const { image } = this.refsProps;
     return new Promise((res) => {
       const imageFile = image.current?.files?.[0];
-      if (imageFile) {
-        const reader = new FileReader();
-        reader.readAsDataURL(imageFile);
-        reader.onload = () => {
-          Object.assign(this.cardProps, { ...this.cardProps, imageFile: reader.result });
-          res(true);
-        };
+      if (!imageFile) {
+        res(true);
         return;
       }
-      res(true);
+      const reader = new FileReader();
+      reader.readAsDataURL(imageFile);
+      reader.onload = () => {
+        Object.assign(this.cardProps, { ...this.cardProps, imageFile: reader.result });
+        res(true);
+      };
     });
   };
 

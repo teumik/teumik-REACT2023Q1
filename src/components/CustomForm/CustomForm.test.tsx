@@ -1,5 +1,5 @@
 import { beforeEach, describe, it, vi } from 'vitest';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { CustomForm } from './CustomForm';
 
 beforeEach(async () => {
@@ -121,6 +121,15 @@ describe('CustomForm', () => {
     fireEvent.change(screen.getByTestId('file'), { target: { files: [file] } });
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
   });
+  it('Test without file', () => {
+    fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
+    fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
+    fireEvent.change(screen.getByTestId('date'), { target: { value: '2022-01-01' } });
+    fireEvent.click(screen.getAllByRole('radio')[0]);
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'russia' } });
+    fireEvent.change(screen.getByTestId('file'), { target: { files: [undefined] } });
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+  });
   it('Test policy checkbox', () => {
     const file = new File(['image'], 'image.jpeg', { type: 'image/jpeg' });
     fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
@@ -133,10 +142,26 @@ describe('CustomForm', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
   });
   describe('CustomForm', () => {
-    it('Test incorrect first name (empty)', () => {
+    it('Test sendFormData', async () => {
       const handler = vi.fn();
       const instance = new CustomForm({ addCard: handler });
-      instance.setSendStatus(true);
+      instance.sendFormData();
+      expect(handler).toBeCalledTimes(1);
+    });
+    it('Test resetForm', async () => {
+      const handler = vi.fn();
+      const instance = new CustomForm({ addCard: handler });
+      instance.resetForm();
+    });
+    it('Test setImageFile', async () => {
+      const handler = vi.fn();
+      const instance = new CustomForm({ addCard: handler });
+      Object.assign(instance.refsProps.image, undefined);
+      await waitFor(async () => {
+        await instance.setImageFile().then((result) => {
+          expect(result).toEqual(true);
+        });
+      });
     });
   });
 });
