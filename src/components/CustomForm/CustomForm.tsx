@@ -88,7 +88,7 @@ class CustomForm extends Component<CustomFormProps, CustomFormState> {
     this.clearTimeoutId();
   }
 
-  private setSendStatus = (sendStatus: boolean) => {
+  setSendStatus = (sendStatus: boolean) => {
     this.setState((state) => ({ ...state, sendStatus }));
   };
 
