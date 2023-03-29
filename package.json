@@ -7,8 +7,8 @@
   "scripts": {
     "init": "npm install",
     "prettier": "npx prettier src --check",
-    "lint": "npx eslint src",
-    "format": "npm run prettier -- --write && npm run lint --fix",
+    "lint": "npx eslint src --fix",
+    "format": "npm run lint && npm run prettier -- --write",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "dev": "vite",
