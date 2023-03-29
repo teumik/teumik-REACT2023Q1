@@ -89,7 +89,7 @@ module.exports = {
       {
         blankLine: 'always',
         prev: '*',
-        next: ['interface', 'type', 'function', 'class'],
+        next: ['interface', 'type', 'function', 'class', 'export'],
       },
     ],
     '@typescript-eslint/keyword-spacing': ['error'],
