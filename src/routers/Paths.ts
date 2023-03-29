@@ -18,4 +18,5 @@ class Paths {
 }
 
 const paths = new Paths();
+
 export { paths };
