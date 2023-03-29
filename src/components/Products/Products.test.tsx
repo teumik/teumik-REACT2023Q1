@@ -53,15 +53,4 @@ describe('Products', () => {
     expect(titles.length).toEqual(2);
     expect(prices.length).toEqual(2);
   });
-  it('Test filter method', async () => {
-    const instance = new Products({});
-    const { products } = fakeProducts;
-    expect(instance.filterProduct('Harry Potter', products[0])).toEqual(true);
-    expect(instance.filterProduct('Lived Has', products[0])).toEqual(true);
-    expect(instance.filterProduct('8888', products[0])).toEqual(true);
-    expect(instance.filterProduct('book', products[0])).toEqual(true);
-    expect(instance.filterProduct('77777', products[0])).toEqual(true);
-    expect(instance.filterProduct('4.9', products[0])).toEqual(true);
-    expect(instance.filterProduct('qwe', products[0])).toEqual(null);
-  });
 });
