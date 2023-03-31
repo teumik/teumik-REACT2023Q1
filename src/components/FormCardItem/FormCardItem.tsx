@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import style from './formCardItem.module.scss';
 import { capitalize } from '../../utils/stringHelpers';
 
@@ -16,38 +15,35 @@ interface FormCardItemProps {
   cardData: CardItem;
 }
 
-class FormCardItem extends Component<FormCardItemProps> {
-  render() {
-    const { cardData } = this.props;
-    const { firstName, lastName, birthDate, country, gender, imageFile, isPolicyAccept } = cardData;
-    return (
-      <article className={style.card}>
-        <picture className={style.picture}>
-          <source srcSet={imageFile} />
-          <img
-            src={imageFile}
-            alt={`${firstName} ${lastName}`}
-            loading="lazy"
-          />
-        </picture>
-        <h3>
-          {firstName} {lastName}
-        </h3>
-        <p>
-          Birth Date: <span>{new Date(birthDate).toDateString()}</span>
-        </p>
-        <p>
-          Gender: <span>{capitalize(gender)}</span>
-        </p>
-        <p>
-          Country: <span>{capitalize(country)}</span>
-        </p>
-        <p>
-          Accept private policy: <span>{isPolicyAccept ? 'Yes' : 'No'}</span>
-        </p>
-      </article>
-    );
-  }
+function FormCardItem({ cardData }: FormCardItemProps) {
+  const { firstName, lastName, birthDate, country, gender, imageFile, isPolicyAccept } = cardData;
+  return (
+    <article className={style.card}>
+      <picture className={style.picture}>
+        <source srcSet={imageFile} />
+        <img
+          src={imageFile}
+          alt={`${firstName} ${lastName}`}
+          loading="lazy"
+        />
+      </picture>
+      <h3>
+        {firstName} {lastName}
+      </h3>
+      <p>
+        Birth Date: <span>{new Date(birthDate).toDateString()}</span>
+      </p>
+      <p>
+        Gender: <span>{capitalize(gender)}</span>
+      </p>
+      <p>
+        Country: <span>{capitalize(country)}</span>
+      </p>
+      <p>
+        Accept private policy: <span>{isPolicyAccept ? 'Yes' : 'No'}</span>
+      </p>
+    </article>
+  );
 }
 
 export { FormCardItem };
