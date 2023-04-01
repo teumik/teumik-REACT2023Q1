@@ -1,37 +1,26 @@
-import { Component, RefObject } from 'react';
+import { ErrorsProp, Register } from '../CustomForm';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
-interface BirthDateInputProps {
-  birthDateRef: RefObject<HTMLInputElement>;
-  error: [boolean, string];
-}
+interface BirthDateInputProps extends Register, ErrorsProp {}
 
-class BirthDateInput extends Component<BirthDateInputProps> {
-  render() {
-    const {
-      birthDateRef,
-      error: [isError, errorMessage],
-    } = this.props;
-
-    return (
-      <>
-        <label htmlFor="date">Birth Date:</label>
-        <input
-          type="date"
-          name="date"
-          id="date"
-          ref={birthDateRef}
-          data-testid="date"
-        />
-        {isError && (
-          <>
-            <span />
-            <ErrorMessage message={errorMessage} />
-          </>
-        )}
-      </>
-    );
-  }
+function BirthDateInput({ register, errors }: BirthDateInputProps) {
+  return (
+    <>
+      <label htmlFor="date">Birth Date:</label>
+      <input
+        type="date"
+        id="date"
+        data-testid="date"
+        {...register('date')}
+      />
+      {errors.date && (
+        <>
+          <span />
+          <ErrorMessage message={errors.date.message} />
+        </>
+      )}
+    </>
+  );
 }
 
 export { BirthDateInput };

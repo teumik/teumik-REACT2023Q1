@@ -1,45 +1,35 @@
-import { Component, RefObject } from 'react';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { ErrorsProp, Register } from '../CustomForm';
 
-interface CountrySelectProps {
-  countryRef: RefObject<HTMLSelectElement>;
-  error: [boolean, string];
-}
+interface CountrySelectProps extends Register, ErrorsProp {}
 
-class CountrySelect extends Component<CountrySelectProps> {
-  render() {
-    const {
-      countryRef,
-      error: [isError, errorMessage],
-    } = this.props;
-    return (
-      <>
-        <label htmlFor="country">Country:</label>
-        <select
-          defaultValue=""
-          name="country"
-          id="country"
-          ref={countryRef}
+function CountrySelect({ register, errors }: CountrySelectProps) {
+  return (
+    <>
+      <label htmlFor="country">Country:</label>
+      <select
+        defaultValue=""
+        id="country"
+        {...register('country')}
+      >
+        <option
+          value=""
+          disabled
         >
-          <option
-            value=""
-            disabled
-          >
-            Choose your country
-          </option>
-          <option value="belarus">Belarus</option>
-          <option value="ukraine">Ukraine</option>
-          <option value="russia">Russia</option>
-        </select>
-        {isError && (
-          <>
-            <span />
-            <ErrorMessage message={errorMessage} />
-          </>
-        )}
-      </>
-    );
-  }
+          Choose your country
+        </option>
+        <option value="belarus">Belarus</option>
+        <option value="ukraine">Ukraine</option>
+        <option value="russia">Russia</option>
+      </select>
+      {errors.country && (
+        <>
+          <span />
+          <ErrorMessage message={errors.country.message} />
+        </>
+      )}
+    </>
+  );
 }
 
 export { CountrySelect };

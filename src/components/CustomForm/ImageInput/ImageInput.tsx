@@ -1,31 +1,21 @@
-import { Component, RefObject } from 'react';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { ErrorsProp, Register } from '../CustomForm';
 
-interface ImageInputProps {
+interface ImageInputProps extends Register, ErrorsProp {
   styleName: string;
-  imageRef: RefObject<HTMLInputElement>;
-  error: [boolean, string];
 }
 
-class ImageInput extends Component<ImageInputProps> {
-  render() {
-    const {
-      styleName,
-      imageRef,
-      error: [isError, errorMessage],
-    } = this.props;
-    return (
-      <div className={styleName}>
-        <input
-          type="file"
-          name="image"
-          ref={imageRef}
-          data-testid="file"
-        />
-        {isError && <ErrorMessage message={errorMessage} />}
-      </div>
-    );
-  }
+function ImageInput({ styleName, register, errors }: ImageInputProps) {
+  return (
+    <div className={styleName}>
+      <input
+        type="file"
+        data-testid="file"
+        {...register('image')}
+      />
+      {errors.image && <ErrorMessage message={errors.image.message} />}
+    </div>
+  );
 }
 
 export { ImageInput };

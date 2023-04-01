@@ -1,54 +1,39 @@
-import { Component, RefObject } from 'react';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { ErrorsProp, Register } from '../CustomForm';
 
-interface FullNameInputProps {
-  firstNameRef: RefObject<HTMLInputElement>;
-  lastNameRef: RefObject<HTMLInputElement>;
-  firstError: [boolean, string];
-  lastError: [boolean, string];
-}
+interface FullNameInputProps extends Register, ErrorsProp {}
 
-class FullNameInput extends Component<FullNameInputProps> {
-  render() {
-    const {
-      firstNameRef,
-      lastNameRef,
-      firstError: [isErrorFirst, errorMessageFirst],
-      lastError: [isErrorLast, errorMessageLast],
-    } = this.props;
-    return (
-      <>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          placeholder="John"
-          ref={firstNameRef}
-        />
-        {isErrorFirst && (
-          <>
-            <span />
-            <ErrorMessage message={errorMessageFirst} />
-          </>
-        )}
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          placeholder="Doe"
-          ref={lastNameRef}
-        />
-        {isErrorLast && (
-          <>
-            <span />
-            <ErrorMessage message={errorMessageLast} />
-          </>
-        )}
-      </>
-    );
-  }
+function FullNameInput({ register, errors }: FullNameInputProps) {
+  return (
+    <>
+      <label htmlFor="firstName">First Name:</label>
+      <input
+        type="text"
+        id="firstName"
+        placeholder="John"
+        {...register('firstName')}
+      />
+      {errors.firstName && (
+        <>
+          <span />
+          <ErrorMessage message={errors.firstName.message} />
+        </>
+      )}
+      <label htmlFor="lastName">Last Name:</label>
+      <input
+        type="text"
+        id="lastName"
+        placeholder="Doe"
+        {...register('lastName')}
+      />
+      {errors.lastName && (
+        <>
+          <span />
+          <ErrorMessage message={errors.lastName.message} />
+        </>
+      )}
+    </>
+  );
 }
 
 export { FullNameInput };

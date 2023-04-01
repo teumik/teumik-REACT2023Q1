@@ -1,39 +1,29 @@
-import { Component, RefObject } from 'react';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { ErrorsProp, Register } from '../CustomForm';
 
-interface PolicyCheckboxProps {
+interface PolicyCheckboxProps extends Register, ErrorsProp {
   styleName: string;
-  policyRef: RefObject<HTMLInputElement>;
-  error: [boolean, string];
 }
 
-class PolicyCheckbox extends Component<PolicyCheckboxProps> {
-  render() {
-    const {
-      styleName,
-      policyRef,
-      error: [isError, errorMessage],
-    } = this.props;
-    return (
-      <>
-        <div className={styleName}>
-          <input
-            type="checkbox"
-            name="agreement"
-            id="agreement"
-            ref={policyRef}
-          />
-          <label htmlFor="agreement">I accept personal data processing</label>
-        </div>
-        {isError && (
-          <>
-            <span />
-            <ErrorMessage message={errorMessage} />
-          </>
-        )}
-      </>
-    );
-  }
+function PolicyCheckbox({ styleName, register, errors }: PolicyCheckboxProps) {
+  return (
+    <>
+      <div className={styleName}>
+        <input
+          type="checkbox"
+          id="agreement"
+          {...register('agreement')}
+        />
+        <label htmlFor="agreement">I accept personal data processing</label>
+      </div>
+      {errors.agreement && (
+        <>
+          <span />
+          <ErrorMessage message={errors.agreement.message} />
+        </>
+      )}
+    </>
+  );
 }
 
 export { PolicyCheckbox };
