@@ -8,7 +8,14 @@ interface ErrorMessageProps {
 class ErrorMessage extends Component<ErrorMessageProps> {
   render() {
     const { message } = this.props;
-    return <div className={style.error}>{message || ''}</div>;
+    return (
+      <div
+        className={style.error}
+        data-testid="message"
+      >
+        {message || ''}
+      </div>
+    );
   }
 }
 
