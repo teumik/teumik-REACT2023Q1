@@ -4,11 +4,11 @@ import { capitalize } from '../../utils/stringHelpers';
 export interface CardItem {
   firstName: string;
   lastName: string;
-  birthDate: string;
+  date: string;
   country: string;
   gender: string;
-  imageFile: string;
-  isPolicyAccept: boolean | null;
+  image: string;
+  agreement: boolean;
 }
 
 interface FormCardItemProps {
@@ -16,13 +16,14 @@ interface FormCardItemProps {
 }
 
 function FormCardItem({ cardData }: FormCardItemProps) {
-  const { firstName, lastName, birthDate, country, gender, imageFile, isPolicyAccept } = cardData;
+  const { firstName, lastName, date, country, gender, image, agreement } = cardData;
+
   return (
     <article className={style.card}>
       <picture className={style.picture}>
-        <source srcSet={imageFile} />
+        <source srcSet={image} />
         <img
-          src={imageFile}
+          src={image}
           alt={`${firstName} ${lastName}`}
           loading="lazy"
         />
@@ -31,7 +32,7 @@ function FormCardItem({ cardData }: FormCardItemProps) {
         {firstName} {lastName}
       </h3>
       <p>
-        Birth Date: <span>{new Date(birthDate).toDateString()}</span>
+        Birth Date: <span>{new Date(date).toDateString()}</span>
       </p>
       <p>
         Gender: <span>{capitalize(gender)}</span>
@@ -40,7 +41,7 @@ function FormCardItem({ cardData }: FormCardItemProps) {
         Country: <span>{capitalize(country)}</span>
       </p>
       <p>
-        Accept private policy: <span>{isPolicyAccept ? 'Yes' : 'No'}</span>
+        Accept private policy: <span>{agreement ? 'Yes' : 'No'}</span>
       </p>
     </article>
   );
