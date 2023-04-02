@@ -1,20 +1,22 @@
 import style from './products.module.scss';
 import { SearchForm } from '../SearchForm/SearchForm';
-import { ProductItem } from '../ProductItem/ProductItem';
-import { useFetchProducts } from '../../hooks/useFetchProducts';
-import { useFilterProducts } from '../../hooks/useFilterProducts';
+import { Product, ProductItem } from '../ProductItem/ProductItem';
+import { filter } from '../../utils/filterHelper';
 
-function Products() {
-  const { products } = useFetchProducts();
-  const { setQuery, filter } = useFilterProducts();
+interface ProductsProps {
+  products: Product[];
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
+function Products({ products, query, setQuery }: ProductsProps) {
   return (
     <>
       <SearchForm setQuery={setQuery} />
       <section className={style.products}>
         {products.map(
           (product) =>
-            filter(product) && (
+            filter(product, query) && (
               <ProductItem
                 key={product.id}
                 product={product}
