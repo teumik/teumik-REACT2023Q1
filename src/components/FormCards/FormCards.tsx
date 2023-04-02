@@ -1,15 +1,20 @@
 import style from './formCards.module.scss';
-import { FormCardItem } from '../FormCardItem/FormCardItem';
+import { CardItem, FormCardItem } from '../FormCardItem/FormCardItem';
 import { CustomForm } from '../CustomForm/CustomForm';
-import { useAddCard } from '../../hooks/useAddCard';
 
-function FormCards() {
-  const { cards, addCard } = useAddCard();
+interface FormCardsProps {
+  addCard: (card: CardItem) => void;
+  cards: CardItem[];
+}
 
+function FormCards({ addCard, cards }: FormCardsProps) {
   return (
     <>
       <CustomForm addCard={addCard} />
-      <section className={style['cards-container']}>
+      <section
+        className={style['cards-container']}
+        data-testid="cards-container"
+      >
         {cards.map((card) => (
           <FormCardItem
             key={Math.random()}
