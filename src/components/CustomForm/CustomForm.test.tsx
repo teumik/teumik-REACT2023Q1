@@ -196,8 +196,10 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('checkbox'));
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
-    vi.runAllTimers();
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+    act(() => {
+      vi.runAllTimers();
+      expect(setTimeout).toHaveBeenCalledTimes(1);
+      expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+    });
   });
 });
