@@ -17,7 +17,7 @@ const fakeCards = [
     lastName: 'Last Name',
     date: '2022-01-01',
     country: 'russia',
-    gender: 'male',
+    gender: null,
     image: 'src',
     agreement: false,
   },
