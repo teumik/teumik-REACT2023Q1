@@ -28,10 +28,12 @@ const getFakeDate = (action: string) => {
 
 beforeEach(async () => {
   await act(async () => {
-    const handler = vi.fn();
     globalThis.URL.createObjectURL = vi.fn();
+    const handler = vi.fn();
     render(<CustomForm addCard={handler} />);
   });
+  vi.useFakeTimers();
+  vi.spyOn(global, 'setTimeout');
 });
 
 describe('CustomForm', () => {
@@ -194,5 +196,8 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('checkbox'));
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
+    vi.runAllTimers();
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
   });
 });
