@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FieldErrors, SubmitHandler, UseFormRegister, useForm } from 'react-hook-form';
 import style from './customForm.module.scss';
 import { FullNameInput } from './FullNameInput/FullNameInput';
@@ -10,6 +9,7 @@ import { PolicyCheckbox } from './PolicyCheckbox/PolicyCheckbox';
 import { CardItem } from '../FormCardItem/FormCardItem';
 import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
+import { useSendingStatus } from '../../hooks/useSendingStatus';
 
 interface CustomFormProps {
   addCard: (card: CardItem) => void;
@@ -34,10 +34,7 @@ export interface ErrorsProp {
 }
 
 function CustomForm({ addCard }: CustomFormProps) {
-  const [isSending, setSendingStatus] = useState(false);
-  const toggleSendingStatus = () => {
-    setSendingStatus((status) => !status);
-  };
+  const { isSending, toggleSendingStatus } = useSendingStatus();
   const {
     register,
     formState: { errors },
