@@ -6,20 +6,20 @@ const fakeCards = [
   {
     firstName: 'First Name',
     lastName: 'Last Name',
-    birthDate: '2022-01-01',
+    date: '2022-01-01',
     country: 'russia',
     gender: 'male',
-    imageFile: 'src',
-    isPolicyAccept: true,
+    image: 'src',
+    agreement: true,
   },
   {
     firstName: 'First Name',
     lastName: 'Last Name',
-    birthDate: '2022-01-01',
+    date: '2022-01-01',
     country: 'russia',
     gender: 'male',
-    imageFile: 'src',
-    isPolicyAccept: false,
+    image: 'src',
+    agreement: false,
   },
 ];
 
