@@ -3,7 +3,7 @@ import { Product } from '../components/ProductItem/ProductItem';
 import { getProductFromFile } from '../utils/getProductFromFile';
 import { paths } from '../routers/Paths';
 
-interface ProductsResponse {
+export interface ProductsResponse {
   products: Product[];
 }
 
@@ -16,7 +16,7 @@ const useFetchProducts = () => {
     });
   }, []);
 
-  return { products };
+  return { products, setProducts };
 };
 
 export { useFetchProducts };
