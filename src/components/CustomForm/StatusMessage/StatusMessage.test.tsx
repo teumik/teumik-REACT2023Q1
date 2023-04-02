@@ -4,7 +4,8 @@ import { StatusMessage } from './StatusMessage';
 
 describe('StatusMessage', () => {
   it('Test render status', () => {
-    render(<StatusMessage />);
-    expect(screen.getByText('Form data was saved')).toBeInTheDocument();
+    const text = 'Form data was saved';
+    render(<StatusMessage message={text} />);
+    expect(screen.getByText(text)).toBeInTheDocument();
   });
 });
