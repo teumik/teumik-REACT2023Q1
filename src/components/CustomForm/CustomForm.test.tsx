@@ -184,7 +184,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test policy checkbox', async () => {
+  it('Test full form cycle', async () => {
     const file = new File(['image'], 'image.jpeg', { type: 'image/jpeg' });
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
