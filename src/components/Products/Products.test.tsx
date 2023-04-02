@@ -43,7 +43,15 @@ afterEach(() => {
 
 describe('Products', () => {
   it('Test render products', async () => {
-    const result = render(<Products />);
+    const handler = vi.fn();
+    const { products } = fakeProducts;
+    const result = render(
+      <Products
+        setQuery={handler}
+        query=""
+        products={products}
+      />
+    );
     const titles = await result.findAllByRole('heading', {
       level: 3,
     });
