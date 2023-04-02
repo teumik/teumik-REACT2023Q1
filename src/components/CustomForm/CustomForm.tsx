@@ -48,7 +48,7 @@ function CustomForm({ addCard }: CustomFormProps) {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const url = URL.createObjectURL(data.image[0]);
-    addCard({ ...data, image: url, gender: data.gender || '' });
+    addCard({ ...data, image: url, gender: data.gender });
     toggleSendingStatus();
     setTimeout(() => {
       reset();

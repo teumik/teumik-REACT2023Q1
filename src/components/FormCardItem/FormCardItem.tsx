@@ -6,7 +6,7 @@ export interface CardItem {
   lastName: string;
   date: string;
   country: string;
-  gender: string;
+  gender: string | null;
   image: string;
   agreement: boolean;
 }
@@ -34,9 +34,11 @@ function FormCardItem({ cardData }: FormCardItemProps) {
       <p>
         Birth Date: <span>{new Date(date).toDateString()}</span>
       </p>
-      <p>
-        Gender: <span>{capitalize(gender)}</span>
-      </p>
+      {gender && (
+        <p>
+          Gender: <span>{capitalize(gender)}</span>
+        </p>
+      )}
       <p>
         Country: <span>{capitalize(country)}</span>
       </p>
