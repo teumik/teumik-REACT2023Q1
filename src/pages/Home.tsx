@@ -5,6 +5,7 @@ import { useSearch } from '../hooks/useSearch';
 function Home() {
   const { products } = useFetchProducts();
   const { query, setQuery } = useSearch();
+
   return (
     <>
       <h1>Home</h1>
