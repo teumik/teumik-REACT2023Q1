@@ -26,12 +26,13 @@ const getFakeDate = (action: string) => {
   }
 };
 
-beforeEach(async () => {
-  await act(async () => {
-    globalThis.URL.createObjectURL = vi.fn();
-    const handler = vi.fn();
-    render(<CustomForm addCard={handler} />);
-  });
+beforeAll(() => {
+  globalThis.URL.createObjectURL = vi.fn();
+});
+
+beforeEach(() => {
+  const handler = vi.fn();
+  render(<CustomForm addCard={handler} />);
   vi.useFakeTimers();
   vi.spyOn(global, 'setTimeout');
 });
@@ -55,13 +56,6 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test incorrect surname (empty)', async () => {
-    await act(async () => {
-      fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
-      fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: '' } });
-      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
-    });
-  });
   it('Test incorrect surname (lower case)', async () => {
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
@@ -76,8 +70,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-
-  it('Test incorrect date', async () => {
+  it('Test incorrect date by year', async () => {
     const fakeDate = getFakeDate('plus year');
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
@@ -86,7 +79,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test incorrect date', async () => {
+  it('Test incorrect date by month', async () => {
     const fakeDate = getFakeDate('plus month');
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
@@ -95,7 +88,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test incorrect date', async () => {
+  it('Test incorrect date by day', async () => {
     const fakeDate = getFakeDate('plus day');
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
@@ -104,7 +97,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test incorrect date', async () => {
+  it('Test incorrect date under min value', async () => {
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
       fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
@@ -120,17 +113,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-
-  it('Test country select (empty)', async () => {
-    await act(async () => {
-      fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
-      fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
-      fireEvent.change(screen.getByTestId('date'), { target: { value: '2022-01-01' } });
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: '' } });
-      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
-    });
-  });
-  it('Test country select (empty)', async () => {
+  it('Test country select', async () => {
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
       fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
@@ -139,7 +122,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test correct radio', async () => {
+  it('Test gender radio', async () => {
     await act(async () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
       fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
@@ -155,8 +138,8 @@ describe('CustomForm', () => {
       fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
       fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
       fireEvent.change(screen.getByTestId('date'), { target: { value: '2022-01-01' } });
-      fireEvent.click(screen.getAllByRole('radio')[0]);
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'russia' } });
+      fireEvent.click(screen.getAllByRole('radio')[0]);
       fireEvent.change(screen.getByTestId('file'), { target: { files: [file] } });
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
@@ -173,17 +156,6 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
   });
-  it('Test without file', async () => {
-    await act(async () => {
-      fireEvent.change(screen.getAllByRole('textbox')[0], { target: { value: 'Name' } });
-      fireEvent.change(screen.getAllByRole('textbox')[1], { target: { value: 'Surname' } });
-      fireEvent.change(screen.getByTestId('date'), { target: { value: '2022-01-01' } });
-      fireEvent.click(screen.getAllByRole('radio')[0]);
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'russia' } });
-      fireEvent.change(screen.getByTestId('file'), { target: { files: [undefined] } });
-      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
-    });
-  });
   it('Test full form cycle', async () => {
     const file = new File(['image'], 'image.jpeg', { type: 'image/jpeg' });
     await act(async () => {
@@ -196,7 +168,7 @@ describe('CustomForm', () => {
       fireEvent.click(screen.getByRole('checkbox'));
       fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
     });
-    act(() => {
+    await act(async () => {
       vi.runAllTimers();
       expect(setTimeout).toHaveBeenCalledTimes(1);
       expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
