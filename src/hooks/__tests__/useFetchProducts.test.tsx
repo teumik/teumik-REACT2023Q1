@@ -3,11 +3,11 @@ import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { useFetchProducts } from '../useFetchProducts';
 import { Product } from '../../components/ProductItem/ProductItem';
-import { getProductFromFile } from '../../utils/getProductFromFile';
+import { customFetch } from '../../utils/customFetch';
 import { mockResponse } from '../../__mocks__/response.mock';
 
 beforeAll(() => {
-  vi.mock('../../utils/getProductFromFile');
+  vi.mock('../../utils/customFetch');
 });
 
 afterAll(() => {
@@ -19,7 +19,7 @@ interface ProductsResponse {
 }
 
 describe('StatusMessage', () => {
-  const mockFn = (getProductFromFile as Mock).mockReturnValue(Promise.resolve(mockResponse));
+  const mockFn = (customFetch as Mock).mockReturnValue(Promise.resolve(mockResponse));
   it('Test render status', async () => {
     const { result } = renderHook(useFetchProducts);
     await act(async () => {

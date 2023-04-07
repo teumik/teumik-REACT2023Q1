@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../components/ProductItem/ProductItem';
-import { getProductFromFile } from '../utils/getProductFromFile';
+import { customFetch } from '../utils/customFetch';
 import { paths } from '../routers/Paths';
 
 export interface ProductsResponse {
@@ -8,10 +8,10 @@ export interface ProductsResponse {
 }
 
 const useFetchProducts = () => {
-  const [products, setProducts] = useState([] as Product[]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    getProductFromFile<ProductsResponse>(paths.serverUrl).then(({ products: productsList }) => {
+    customFetch<ProductsResponse>({ url: paths.serverUrl }).then(({ products: productsList }) => {
       setProducts(productsList);
     });
   }, []);

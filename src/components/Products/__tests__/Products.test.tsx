@@ -1,12 +1,12 @@
 import { Mock, describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { Products } from '../Products';
-import { getProductFromFile } from '../../../utils/getProductFromFile';
+import { customFetch } from '../../../utils/customFetch';
 import { mockResponse } from '../../../__mocks__/response.mock';
 
 beforeAll(() => {
-  vi.mock('../../../utils/getProductFromFile');
-  (getProductFromFile as Mock).mockReturnValue(Promise.resolve(mockResponse));
+  vi.mock('../../../utils/customFetch');
+  (customFetch as Mock).mockReturnValue(Promise.resolve(mockResponse));
 });
 
 afterAll(() => {
