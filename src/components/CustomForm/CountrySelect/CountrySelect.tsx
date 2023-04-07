@@ -1,9 +1,11 @@
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 
 interface Props extends Register, ErrorsProp {}
 
 function CountrySelect({ register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+
   return (
     <>
       <label htmlFor="country">Country:</label>
@@ -22,12 +24,7 @@ function CountrySelect({ register, errors }: Props) {
         <option value="ukraine">Ukraine</option>
         <option value="russia">Russia</option>
       </select>
-      {errors.country && (
-        <>
-          <span />
-          <ErrorMessage message={errors.country.message} />
-        </>
-      )}
+      {errors.country && showErrorMessage(errors.country.message)}
     </>
   );
 }

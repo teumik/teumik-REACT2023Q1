@@ -1,11 +1,13 @@
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 
 interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
 function ImageInput({ styleName, register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 1 });
+
   return (
     <div className={styleName}>
       <input
@@ -13,7 +15,7 @@ function ImageInput({ styleName, register, errors }: Props) {
         data-testid="file"
         {...register('image')}
       />
-      {errors.image && <ErrorMessage message={errors.image.message} />}
+      {errors.image && showErrorMessage(errors.image.message)}
     </div>
   );
 }

@@ -1,11 +1,13 @@
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 
 interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
 function PolicyCheckbox({ styleName, register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+
   return (
     <>
       <div className={styleName}>
@@ -16,12 +18,7 @@ function PolicyCheckbox({ styleName, register, errors }: Props) {
         />
         <label htmlFor="agreement">I accept personal data processing</label>
       </div>
-      {errors.agreement && (
-        <>
-          <span />
-          <ErrorMessage message={errors.agreement.message} />
-        </>
-      )}
+      {errors.agreement && showErrorMessage(errors.agreement.message)}
     </>
   );
 }

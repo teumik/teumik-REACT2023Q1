@@ -1,9 +1,11 @@
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
 interface Props extends Register, ErrorsProp {}
 
 function BirthDateInput({ register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+
   return (
     <>
       <label htmlFor="date">Birth Date:</label>
@@ -13,12 +15,7 @@ function BirthDateInput({ register, errors }: Props) {
         data-testid="date"
         {...register('date')}
       />
-      {errors.date && (
-        <>
-          <span />
-          <ErrorMessage message={errors.date.message} />
-        </>
-      )}
+      {errors.date && showErrorMessage(errors.date.message)}
     </>
   );
 }

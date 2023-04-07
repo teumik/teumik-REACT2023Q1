@@ -1,9 +1,11 @@
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 
 interface Props extends Register, ErrorsProp {}
 
 function FullNameInput({ register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+
   return (
     <>
       <label htmlFor="firstName">First Name:</label>
@@ -13,12 +15,7 @@ function FullNameInput({ register, errors }: Props) {
         placeholder="John"
         {...register('firstName')}
       />
-      {errors.firstName && (
-        <>
-          <span />
-          <ErrorMessage message={errors.firstName.message} />
-        </>
-      )}
+      {errors.firstName && showErrorMessage(errors.firstName.message)}
       <label htmlFor="lastName">Last Name:</label>
       <input
         type="text"
@@ -26,12 +23,7 @@ function FullNameInput({ register, errors }: Props) {
         placeholder="Doe"
         {...register('lastName')}
       />
-      {errors.lastName && (
-        <>
-          <span />
-          <ErrorMessage message={errors.lastName.message} />
-        </>
-      )}
+      {errors.lastName && showErrorMessage(errors.lastName.message)}
     </>
   );
 }

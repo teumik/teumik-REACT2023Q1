@@ -1,11 +1,13 @@
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
+import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 
 interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
 function GenderRadio({ styleName, register, errors }: Props) {
+  const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+
   return (
     <>
       <label htmlFor="gender">Gender:</label>
@@ -38,12 +40,7 @@ function GenderRadio({ styleName, register, errors }: Props) {
           Other
         </label>
       </div>
-      {errors.gender && (
-        <>
-          <span />
-          <ErrorMessage message={errors.gender.message} />
-        </>
-      )}
+      {errors.gender && showErrorMessage(errors.gender.message)}
     </>
   );
 }
