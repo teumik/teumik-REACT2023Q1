@@ -34,11 +34,11 @@ const fakeProducts = {
   ],
 };
 
-beforeEach(() => {
+beforeAll(() => {
   vi.mock('../utils/getProductFromFile');
 });
 
-afterEach(() => {
+afterAll(() => {
   vi.restoreAllMocks();
 });
 
