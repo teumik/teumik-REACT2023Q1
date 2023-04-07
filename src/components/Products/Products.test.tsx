@@ -32,12 +32,12 @@ const fakeProducts = {
   ],
 };
 
-beforeEach(() => {
+beforeAll(() => {
   vi.mock('../../utils/getProductFromFile');
   (getProductFromFile as Mock).mockReturnValue(Promise.resolve(fakeProducts));
 });
 
-afterEach(() => {
+afterAll(() => {
   vi.restoreAllMocks();
 });
 
