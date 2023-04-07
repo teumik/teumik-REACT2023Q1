@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { BackButton } from './BackButton';
+import { BackButton } from '../BackButton';
 
 describe('BackButton', () => {
   it('Test render button', () => {

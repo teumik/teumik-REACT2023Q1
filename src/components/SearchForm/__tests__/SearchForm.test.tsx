@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { SearchForm } from './SearchForm';
+import { SearchForm } from '../SearchForm';
 
 describe('SearchForm', () => {
   it('Test search input', () => {

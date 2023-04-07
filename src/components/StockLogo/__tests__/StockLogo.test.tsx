@@ -1,10 +1,10 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { RatingLogo } from './RatingLogo';
+import { StockLogo } from '../StockLogo';
 
-describe('RatingLogo', () => {
-  it('Test render rating logo', () => {
-    render(<RatingLogo />);
+describe('StockLogo', () => {
+  it('Test render stock logo', () => {
+    render(<StockLogo />);
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 });

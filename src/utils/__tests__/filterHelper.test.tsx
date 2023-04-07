@@ -1,25 +1,12 @@
 import { describe, it } from 'vitest';
-import { filter } from './filterHelper';
-import { Product } from '../components/ProductItem/ProductItem';
-
-const fakeProducts: Product[] = [
-  {
-    category: 'book',
-    description: 'The Boy Who Lived Has Come To Die',
-    id: 999,
-    image: 'http://url.com',
-    price: 8888,
-    rating: {
-      count: 77777,
-      rate: 4.9,
-    },
-    title: 'Harry Potter',
-  },
-];
+import { filter } from '../filterHelper';
+import { mockResponse } from '../../__mocks__/response.mock';
 
 describe('filter', () => {
   it('Test render products', () => {
-    const [product] = fakeProducts;
+    const {
+      products: [product],
+    } = mockResponse;
     expect(filter(product, '')).toEqual(true);
     expect(filter(product, 'book')).toEqual(true);
     expect(filter(product, 'Who Lived')).toEqual(true);

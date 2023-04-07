@@ -1,5 +1,5 @@
 import { describe, it, vi } from 'vitest';
-import { paths } from './Paths';
+import { paths } from '../Paths';
 
 afterEach(() => {
   vi.restoreAllMocks();

@@ -1,15 +1,14 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { About } from './About';
+import { NotFound } from '../NotFound';
 
-describe('About', () => {
+describe('NotFound', () => {
   it('Test render NotFound', () => {
-    render(<About />);
+    render(<NotFound />);
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('About Us');
-    expect(screen.getByText('Module 01 React Components')).toBeInTheDocument();
+    ).toHaveTextContent('404');
   });
 });

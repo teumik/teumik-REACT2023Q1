@@ -1,14 +1,14 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Forms } from './Forms';
+import { App } from '../App';
 
-describe('Forms', () => {
-  it('Test render NotFound', () => {
-    render(<Forms />);
+describe('App', () => {
+  it('Test render home page', () => {
+    render(<App />);
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Forms');
+    ).toHaveTextContent('Home');
   });
 });

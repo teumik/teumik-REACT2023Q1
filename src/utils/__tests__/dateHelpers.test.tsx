@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { getCurrentDate, getParseDate } from './dateHelpers';
+import { getCurrentDate, getParseDate } from '../dateHelpers';
 
 describe('Date helpers', () => {
   it('Test getCurrentDate', () => {

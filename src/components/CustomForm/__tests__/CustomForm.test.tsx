@@ -1,7 +1,7 @@
 import { beforeEach, describe, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { CustomForm } from './CustomForm';
+import { CustomForm } from '../CustomForm';
 
 const getFakeDate = (action: string) => {
   const getByValue = (ms: number) => new Date(Date.now() + ms).toISOString().split('T');

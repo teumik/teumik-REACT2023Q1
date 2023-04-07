@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { Navigation } from './Navigation';
+import { Navigation } from '../Navigation';
 
 describe('Navigation', () => {
   it('Test links', () => {
