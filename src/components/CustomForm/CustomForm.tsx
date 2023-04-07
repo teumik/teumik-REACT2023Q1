@@ -10,6 +10,7 @@ import { CardItem } from '../FormCardItem/FormCardItem';
 import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
 import { useSendingStatus } from '../../hooks/useSendingStatus';
+import { useTimeout } from '../../hooks/useTimeout';
 
 interface CustomFormProps {
   addCard: (card: CardItem) => void;
@@ -35,6 +36,8 @@ export interface ErrorsProp {
 
 function CustomForm({ addCard }: CustomFormProps) {
   const { isSending, toggleSendingStatus } = useSendingStatus();
+  const userTimeout = useTimeout();
+
   const {
     register,
     formState: { errors },
@@ -50,7 +53,7 @@ function CustomForm({ addCard }: CustomFormProps) {
     const url = URL.createObjectURL(data.image[0]);
     addCard({ ...data, image: url, gender: data.gender });
     toggleSendingStatus();
-    setTimeout(() => {
+    userTimeout(() => {
       reset();
       toggleSendingStatus();
     }, 2000);
