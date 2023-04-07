@@ -1,9 +1,9 @@
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 
-interface FullNameInputProps extends Register, ErrorsProp {}
+interface Props extends Register, ErrorsProp {}
 
-function FullNameInput({ register, errors }: FullNameInputProps) {
+function FullNameInput({ register, errors }: Props) {
   return (
     <>
       <label htmlFor="firstName">First Name:</label>

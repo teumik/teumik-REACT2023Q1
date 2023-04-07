@@ -1,11 +1,11 @@
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 
-interface ImageInputProps extends Register, ErrorsProp {
+interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
-function ImageInput({ styleName, register, errors }: ImageInputProps) {
+function ImageInput({ styleName, register, errors }: Props) {
   return (
     <div className={styleName}>
       <input

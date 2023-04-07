@@ -1,9 +1,9 @@
 import { ErrorsProp, Register } from '../CustomForm';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
-interface BirthDateInputProps extends Register, ErrorsProp {}
+interface Props extends Register, ErrorsProp {}
 
-function BirthDateInput({ register, errors }: BirthDateInputProps) {
+function BirthDateInput({ register, errors }: Props) {
   return (
     <>
       <label htmlFor="date">Birth Date:</label>

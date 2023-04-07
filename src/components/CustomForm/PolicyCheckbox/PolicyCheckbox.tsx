@@ -1,11 +1,11 @@
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 
-interface PolicyCheckboxProps extends Register, ErrorsProp {
+interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
-function PolicyCheckbox({ styleName, register, errors }: PolicyCheckboxProps) {
+function PolicyCheckbox({ styleName, register, errors }: Props) {
   return (
     <>
       <div className={styleName}>

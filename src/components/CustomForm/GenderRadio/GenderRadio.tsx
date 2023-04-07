@@ -1,11 +1,11 @@
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 
-interface GenderRadioProps extends Register, ErrorsProp {
+interface Props extends Register, ErrorsProp {
   styleName: string;
 }
 
-function GenderRadio({ styleName, register, errors }: GenderRadioProps) {
+function GenderRadio({ styleName, register, errors }: Props) {
   return (
     <>
       <label htmlFor="gender">Gender:</label>

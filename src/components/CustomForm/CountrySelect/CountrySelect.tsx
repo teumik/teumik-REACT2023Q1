@@ -1,9 +1,9 @@
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 
-interface CountrySelectProps extends Register, ErrorsProp {}
+interface Props extends Register, ErrorsProp {}
 
-function CountrySelect({ register, errors }: CountrySelectProps) {
+function CountrySelect({ register, errors }: Props) {
   return (
     <>
       <label htmlFor="country">Country:</label>
