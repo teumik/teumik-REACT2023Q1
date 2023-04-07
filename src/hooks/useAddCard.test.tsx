@@ -5,6 +5,7 @@ import { useAddCard } from './useAddCard';
 import { CardItem } from '../components/FormCardItem/FormCardItem';
 
 const fakeCard: CardItem = {
+  id: 1,
   firstName: 'Name',
   lastName: 'Name',
   date: '2022-02-02',

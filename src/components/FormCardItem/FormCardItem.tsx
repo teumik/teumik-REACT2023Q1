@@ -2,6 +2,7 @@ import style from './formCardItem.module.scss';
 import { capitalize } from '../../utils/stringHelpers';
 
 export interface CardItem {
+  id: number;
   firstName: string;
   lastName: string;
   date: string;

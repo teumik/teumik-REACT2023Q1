@@ -6,14 +6,14 @@ import { CountrySelect } from './CountrySelect/CountrySelect';
 import { GenderRadio } from './GenderRadio/GenderRadio';
 import { ImageInput } from './ImageInput/ImageInput';
 import { PolicyCheckbox } from './PolicyCheckbox/PolicyCheckbox';
-import { CardItem } from '../FormCardItem/FormCardItem';
 import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
 import { useSendingStatus } from '../../hooks/useSendingStatus';
 import { useTimeout } from '../../hooks/useTimeout';
+import { AddCardMethod } from '../../hooks/useAddCard';
 
 interface CustomFormProps {
-  addCard: (card: CardItem) => void;
+  addCard: AddCardMethod;
 }
 
 export interface FormData {

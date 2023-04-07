@@ -1,9 +1,10 @@
 import style from './formCards.module.scss';
 import { CardItem, FormCardItem } from '../FormCardItem/FormCardItem';
 import { CustomForm } from '../CustomForm/CustomForm';
+import { AddCardMethod } from '../../hooks/useAddCard';
 
 interface FormCardsProps {
-  addCard: (card: CardItem) => void;
+  addCard: AddCardMethod;
   cards: CardItem[];
 }
 
@@ -17,7 +18,7 @@ function FormCards({ addCard, cards }: FormCardsProps) {
       >
         {cards.map((card) => (
           <FormCardItem
-            key={Math.random()}
+            key={card.id}
             cardData={card}
           />
         ))}
