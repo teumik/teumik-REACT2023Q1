@@ -31,8 +31,7 @@ interface ProductItemProps {
   product: Product;
 }
 
-function ProductItem({ product }: ProductItemProps) {
-  const { id, name, status, image } = product;
+function ProductItem({ product: { id, name, status, image } }: ProductItemProps) {
   const { isAnimated, onAnimate } = useAnimation();
   const [showModal, setShowModal] = useState(false);
   const [isPending, setPending] = useState<boolean>(false);
