@@ -27,7 +27,7 @@ export interface Pages {
 
 const useCustomFetch = () => {
   const [items, setItems] = useState<Product[]>([]);
-  const [paginationLink, setPaginationLink] = useState<PaginationLink>();
+  const [paginationLink, setPaginationLink] = useState<PaginationLink>({ next: null, prev: null });
   const [pages, setPages] = useState<Pages>({ current: 0, next: null, prev: null });
   const [pagesCount, setPagesCount] = useState<number>(0);
   const [notFoundMessage, setNotFoundMessage] = useState<string>('');
@@ -155,15 +155,24 @@ const useCustomFetch = () => {
   };
 
   return {
-    isPending,
-    pages,
-    pagesCount,
-    nextPage,
-    prevPage,
     items,
     setItems,
-    searchItems,
+    paginationLink,
+    setPaginationLink,
+    pages,
+    setPages,
+    pagesCount,
+    setPagesCount,
     notFoundMessage,
+    setNotFoundMessage,
+    isPending,
+    setPending,
+    nextPage,
+    prevPage,
+    searchItems,
+    totalReset,
+    totalUpdate,
+    setCurrentPage,
   };
 };
 
