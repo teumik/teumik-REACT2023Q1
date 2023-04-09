@@ -1,5 +1,5 @@
 import { Mock, describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Products } from '../Products';
 import { customFetch } from '../../../utils/customFetch';
 import { mockResponse } from '../../../__mocks__/response.mock';
@@ -16,21 +16,35 @@ afterAll(() => {
 describe('Products', () => {
   it('Test render products', async () => {
     const handler = vi.fn();
-    const { products } = mockResponse;
-    const result = render(
+    const { results } = mockResponse;
+    render(
       <Products
-        setQuery={handler}
-        query=""
-        products={products}
+        isPending={false}
+        notFoundMessage=""
+        searchItems={handler}
+        products={results}
       />
     );
-    const titles = await result.findAllByRole('heading', {
+    const titles = await screen.findAllByRole('heading', {
       level: 3,
     });
-    const prices = await result.findAllByRole('heading', {
-      level: 4,
+    expect(titles.length).toEqual(2);
+  });
+  it('Test render notFoundMessage', async () => {
+    const handler = vi.fn();
+    const { results } = mockResponse;
+    render(
+      <Products
+        isPending={false}
+        notFoundMessage="quaja"
+        searchItems={handler}
+        products={results}
+      />
+    );
+    const titles = await screen.findAllByRole('heading', {
+      level: 3,
     });
     expect(titles.length).toEqual(2);
-    expect(prices.length).toEqual(2);
+    expect(screen.getByText(/quaja/i)).toBeInTheDocument();
   });
 });
