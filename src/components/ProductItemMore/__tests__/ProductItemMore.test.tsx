@@ -31,4 +31,12 @@ describe('ProductItemMore', () => {
       />
     );
   });
+  it('Test render product item open title', () => {
+    render(
+      <ProductItemMore
+        product={undefined}
+        onClose={handler}
+      />
+    );
+  });
 });
