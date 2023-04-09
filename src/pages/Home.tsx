@@ -1,18 +1,25 @@
+import { Pagination } from '../components/Pagination/Pagination';
 import { Products } from '../components/Products/Products';
-import { useFetchProducts } from '../hooks/useFetchProducts';
-import { useSearch } from '../hooks/useSearch';
+import { useCustomFetch } from '../hooks/useCustomFetch';
 
 function Home() {
-  const { products } = useFetchProducts();
-  const { query, setQuery } = useSearch();
+  const { isPending, pages, pagesCount, prevPage, nextPage, items, searchItems, notFoundMessage } =
+    useCustomFetch();
 
   return (
     <>
       <h1>Home</h1>
+      <Pagination
+        pages={pages}
+        pagesCount={pagesCount}
+        prevPage={prevPage}
+        nextPage={nextPage}
+      />
       <Products
-        products={products}
-        query={query}
-        setQuery={setQuery}
+        isPending={isPending}
+        notFoundMessage={notFoundMessage}
+        products={items}
+        searchItems={searchItems}
       />
     </>
   );
