@@ -1,16 +1,17 @@
+import { rest } from 'msw';
 import { FetchResponse } from '../hooks/useCustomFetch';
 
 const mockResponse: FetchResponse = {
   info: {
-    count: 826,
-    pages: 42,
+    count: 666,
+    pages: 69,
     next: 'https://rickandmortyapi.com/api/character?page=2',
     prev: null,
   },
   results: [
     {
       id: 1,
-      name: 'Rick Sanchez',
+      name: 'Rick Sanchez Fake',
       status: 'Alive',
       species: 'Human',
       type: '',
@@ -34,7 +35,7 @@ const mockResponse: FetchResponse = {
     },
     {
       id: 2,
-      name: 'Morty Smith',
+      name: 'Morty Smith Fake',
       status: 'Alive',
       species: 'Human',
       type: 'Boy',
@@ -59,4 +60,19 @@ const mockResponse: FetchResponse = {
   ],
 };
 
-export { mockResponse };
+const correctHandlers = [
+  rest.get('https://rickandmortyapi.com/api/character', (req, res, ctx) => {
+    if (req.url.searchParams.get('name') === 'query') {
+      return res(ctx.status(404), ctx.json({ error: 'message' }));
+    }
+    if (req.url.searchParams.get('name') === 'correct') {
+      return res(ctx.status(200), ctx.json(mockResponse));
+    }
+    return res(ctx.status(200), ctx.json(mockResponse));
+  }),
+  rest.get('https://rickandmortyapi.com/api/character/1', (_, res, ctx) =>
+    res(ctx.status(200), ctx.json(mockResponse.results[0]))
+  ),
+];
+
+export { mockResponse, correctHandlers };
