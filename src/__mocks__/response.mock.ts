@@ -1,28 +1,60 @@
-const mockResponse = {
-  products: [
+import { FetchResponse } from '../hooks/useCustomFetch';
+
+const mockResponse: FetchResponse = {
+  info: {
+    count: 826,
+    pages: 42,
+    next: 'https://rickandmortyapi.com/api/character?page=2',
+    prev: null,
+  },
+  results: [
     {
-      category: 'book',
-      description: 'The Boy Who Lived Has Come To Die',
-      id: 999,
-      image: 'http://url.com',
-      price: 8888,
-      rating: {
-        count: 77777,
-        rate: 4.9,
+      id: 1,
+      name: 'Rick Sanchez',
+      status: 'Alive',
+      species: 'Human',
+      type: '',
+      gender: 'Male',
+      origin: {
+        name: 'Earth (C-137)',
+        url: 'https://rickandmortyapi.com/api/location/1',
       },
-      title: 'Harry Potter',
+      location: {
+        name: 'Citadel of Ricks',
+        url: 'https://rickandmortyapi.com/api/location/3',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+      episode: [
+        'https://rickandmortyapi.com/api/episode/1',
+        'https://rickandmortyapi.com/api/episode/2',
+        'https://rickandmortyapi.com/api/episode/3',
+      ],
+      url: 'https://rickandmortyapi.com/api/character/1',
+      created: '2017-11-04T18:48:46.250Z',
     },
     {
-      category: 'kitchen',
-      description: 'Big size',
-      id: 123,
-      image: 'http://url2.com',
-      price: 1234,
-      rating: {
-        count: 12345,
-        rate: 0.1,
+      id: 2,
+      name: 'Morty Smith',
+      status: 'Alive',
+      species: 'Human',
+      type: 'Boy',
+      gender: 'Male',
+      origin: {
+        name: 'unknown',
+        url: '',
       },
-      title: 'Silver plate',
+      location: {
+        name: 'Citadel of Ricks',
+        url: 'https://rickandmortyapi.com/api/location/3',
+      },
+      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+      episode: [
+        'https://rickandmortyapi.com/api/episode/1',
+        'https://rickandmortyapi.com/api/episode/2',
+        'https://rickandmortyapi.com/api/episode/3',
+      ],
+      url: 'https://rickandmortyapi.com/api/character/2',
+      created: '2017-11-04T18:50:21.651Z',
     },
   ],
 };
