@@ -8,8 +8,7 @@ class Paths {
       ['/about', 'About Us'],
       ['/forms', 'Forms'],
     ]);
-    this.serverUrl =
-      'https://raw.githubusercontent.com/teumik/teumik-REACT2023Q1/module01/public/data.json';
+    this.serverUrl = 'https://rickandmortyapi.com/api/character';
   }
 
   getPath = (path: string) => this.paths.get(path) || '404';
