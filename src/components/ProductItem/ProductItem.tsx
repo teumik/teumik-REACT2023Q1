@@ -1,18 +1,30 @@
+import { useState } from 'react';
+import { decapitalize } from '../../utils/stringHelpers';
+import { useAnimation } from '../../hooks/useAnimation';
 import style from './productItem.module.scss';
-import { StockLogo } from '../StockLogo/StockLogo';
-import { RatingLogo } from '../RatingLogo/RatingLogo';
+import { Modal } from '../Modal/Modal';
+import { ProductItemMore } from '../ProductItemMore/ProductItemMore';
+import { customFetch } from '../../utils/customFetch';
+import { paths } from '../../routers/Paths';
+
+interface CharacterLocation {
+  name: string;
+  url: string;
+}
 
 export interface Product {
-  category: string;
-  description: string;
   id: number;
+  name: string;
+  status: 'Dead' | 'Alive' | 'unknown';
+  species: string;
+  type: string;
+  gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
+  origin: CharacterLocation;
+  location: CharacterLocation;
   image: string;
-  price: number;
-  rating: {
-    count: number;
-    rate: number;
-  };
-  title: string;
+  episode: string[];
+  url: string;
+  created: string;
 }
 
 interface ProductItemProps {
@@ -20,40 +32,56 @@ interface ProductItemProps {
 }
 
 function ProductItem({ product }: ProductItemProps) {
-  const {
-    category,
-    description,
-    image,
-    price,
-    rating: { count, rate },
-    title,
-  } = product;
+  const { id, name, status, image } = product;
+  const { isAnimated, onAnimate } = useAnimation();
+  const [showModal, setShowModal] = useState(false);
+  const [isPending, setPending] = useState<boolean>(false);
+  const [item, setItem] = useState<Product>();
+
+  const onCLick = async () => {
+    onAnimate();
+    setShowModal(true);
+    setPending(true);
+    customFetch<Product>({ url: `${paths.serverUrl}/${id}` }).then((data) => {
+      setItem(data);
+      setPending(false);
+    });
+  };
 
   return (
-    <article className={style.product}>
-      <picture className={style.picture}>
-        <source srcSet={image} />
-        <img
-          src={image}
-          alt={title}
-          loading="lazy"
+    <>
+      <button
+        className={`${style.container} ${isAnimated && style.animated}`}
+        type="button"
+        onClick={onCLick}
+        data-testid={isAnimated && 'animate'}
+      >
+        <article className={style.product}>
+          <picture className={style.picture}>
+            <source srcSet={image} />
+            <img
+              src={image}
+              alt={name}
+              loading="lazy"
+            />
+          </picture>
+          <div className={style.description}>
+            <h3>{name}</h3>
+            <span className={`${style.status} ${style[decapitalize(status)]}`}>{status}</span>
+          </div>
+        </article>
+      </button>
+      <Modal
+        isPending={isPending}
+        showModal={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <ProductItemMore
+          product={item}
+          onClose={() => setShowModal(false)}
         />
-      </picture>
-      <h3>{title}</h3>
-      <p className={style.description}>{description}</p>
-      <h4 className={style.price}>${price}</h4>
-      <div className={style.category}>{category}</div>
-      <div className={style.stats}>
-        <span>
-          <StockLogo />
-          {count}
-        </span>
-        <span>
-          <RatingLogo />
-          {rate}
-        </span>
-      </div>
-    </article>
+      </Modal>
+    </>
   );
 }
 
