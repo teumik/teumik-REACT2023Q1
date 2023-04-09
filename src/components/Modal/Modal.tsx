@@ -24,7 +24,7 @@ function Modal({ isPending, showModal, onClose, children }: Props) {
       />
       <div className={style.modal}>
         {isPending && <Preloader />}
-        {children}
+        {!isPending && children}
       </div>
     </>,
     document.body
