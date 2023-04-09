@@ -8,7 +8,7 @@ describe('SearchForm', () => {
     const handler = vi.fn();
     render(
       <BrowserRouter>
-        <SearchForm setQuery={handler} />
+        <SearchForm searchItems={handler} />
       </BrowserRouter>
     );
     const input = screen.getByRole<HTMLInputElement>('textbox');
@@ -20,7 +20,7 @@ describe('SearchForm', () => {
     const handler = vi.fn();
     render(
       <BrowserRouter>
-        <SearchForm setQuery={handler} />
+        <SearchForm searchItems={handler} />
       </BrowserRouter>
     );
     const form = screen.getByRole('form');
@@ -28,6 +28,6 @@ describe('SearchForm', () => {
     expect(form).toBeInTheDocument();
     expect(button).toBeInTheDocument();
     fireEvent.click(button);
-    expect(handler).toHaveBeenCalledTimes(2);
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 });

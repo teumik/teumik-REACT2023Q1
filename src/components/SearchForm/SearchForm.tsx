@@ -3,23 +3,19 @@ import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-interface SearchProps {
-  setQuery: (query: string) => void;
+interface Props {
+  searchItems: (query: string) => void;
 }
 
-function SearchForm({ setQuery }: SearchProps) {
+function SearchForm({ searchItems }: Props) {
   const { getStorageValue, storageEffect } = useLocalStorage('search');
   const [search, setSearch] = useState(getStorageValue());
-
-  useEffect(() => {
-    setQuery(search);
-  });
 
   useEffect(() => storageEffect(search));
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setQuery(search);
+    searchItems(search);
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +33,7 @@ function SearchForm({ setQuery }: SearchProps) {
         <input
           type="text"
           name="search"
-          placeholder="Search"
+          placeholder="Search by name"
           spellCheck="false"
           value={search}
           onChange={onChange}
