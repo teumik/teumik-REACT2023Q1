@@ -6,6 +6,7 @@ import { Modal } from '../Modal/Modal';
 import { ProductItemMore } from '../ProductItemMore/ProductItemMore';
 import { customFetch } from '../../utils/customFetch';
 import { paths } from '../../routers/Paths';
+import { ProductModal } from '../ProductModal/ProductModal';
 
 interface CharacterLocation {
   name: string;
@@ -70,16 +71,12 @@ function ProductItem({ product: { id, name, status, image } }: ProductItemProps)
           </div>
         </article>
       </button>
-      <Modal
+      <ProductModal
         isPending={isPending}
         showModal={showModal}
         onClose={() => setShowModal(false)}
-      >
-        <ProductItemMore
-          product={item}
-          onClose={() => setShowModal(false)}
-        />
-      </Modal>
+        product={item}
+      />
     </>
   );
 }
