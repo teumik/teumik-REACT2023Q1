@@ -26,6 +26,7 @@ export interface Pages {
 }
 
 const useCustomFetch = () => {
+  const [localStorage, setLocalStorage] = useState(globalThis.localStorage.getItem('search'));
   const [items, setItems] = useState<Product[]>([]);
   const [paginationLink, setPaginationLink] = useState<PaginationLink>({ next: null, prev: null });
   const [pages, setPages] = useState<Pages>({ current: 0, next: null, prev: null });
@@ -67,7 +68,7 @@ const useCustomFetch = () => {
   useEffect(() => {
     setPending(true);
     customFetch<FetchResponse>({
-      url: `${paths.serverUrl}/?name=${globalThis.localStorage.getItem('search')}`,
+      url: `${paths.serverUrl}/?name=${localStorage}`,
     })
       .then((data) => {
         if (data.error) {
@@ -93,7 +94,7 @@ const useCustomFetch = () => {
       .catch((error: Error) => {
         totalReset(error.message);
       });
-  }, []);
+  }, [localStorage]);
 
   const searchItems = (query: string) => {
     setPending(true);
@@ -155,6 +156,8 @@ const useCustomFetch = () => {
   };
 
   return {
+    localStorage,
+    setLocalStorage,
     items,
     setItems,
     paginationLink,
