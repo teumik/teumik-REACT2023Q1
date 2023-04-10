@@ -60,13 +60,69 @@ const mockResponse: FetchResponse = {
   ],
 };
 
+const mockResponseWithError = {
+  error: 'message',
+  info: {
+    count: 666,
+    pages: 69,
+    next: 'https://rickandmortyapi.com/api/character?page=124',
+    prev: 'https://rickandmortyapi.com/api/character?page=122',
+  },
+  results: [],
+};
+const mockResponseWithoutError = {
+  info: {
+    count: 666,
+    pages: 69,
+    next: 'https://rickandmortyapi.com/api/character?page=124',
+    prev: 'https://rickandmortyapi.com/api/character?page=122',
+  },
+  results: [],
+};
+const mockResponseInfoPages = {
+  info: {
+    count: 666,
+    pages: 1,
+    next: 'https://rickandmortyapi.com/api/character?page=124',
+    prev: 'https://rickandmortyapi.com/api/character?page=122',
+  },
+  results: [],
+};
+const mockResponseInfo = {
+  info: {
+    count: 666,
+    pages: 10,
+    next: 'https://rickandmortyapi.com/api/character?page=124',
+    prev: 'https://rickandmortyapi.com/api/character?page=122',
+  },
+  results: [],
+};
+
 const correctHandlers = [
   rest.get('https://rickandmortyapi.com/api/character', (req, res, ctx) => {
+    if (req.url.searchParams.get('page') === '124') {
+      return res(ctx.status(404), ctx.json(mockResponseWithoutError));
+    }
+    if (req.url.searchParams.get('page') === '123') {
+      return res(ctx.status(200), ctx.json(mockResponseWithError));
+    }
+    if (req.url.searchParams.get('page') === '666') {
+      return res(ctx.status(500), ctx.json(null));
+    }
+    if (req.url.searchParams.get('page') === '69') {
+      return res(ctx.status(404), ctx.json({ error: 'message' }));
+    }
     if (req.url.searchParams.get('name') === 'query') {
       return res(ctx.status(404), ctx.json({ error: 'message' }));
     }
+    if (req.url.searchParams.get('name') === 'error') {
+      return res(ctx.status(500), ctx.json(null));
+    }
     if (req.url.searchParams.get('name') === 'correct') {
-      return res(ctx.status(200), ctx.json(mockResponse));
+      return res(ctx.status(200), ctx.json(mockResponseInfoPages));
+    }
+    if (req.url.searchParams.get('name') === 'incorrect') {
+      return res(ctx.status(200), ctx.json(mockResponseInfo));
     }
     return res(ctx.status(200), ctx.json(mockResponse));
   }),
