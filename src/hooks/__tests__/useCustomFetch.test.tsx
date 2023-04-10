@@ -2,57 +2,163 @@ import { describe, it } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { useCustomFetch } from '../useCustomFetch';
-import { mockResponse } from '../../__mocks__/response.mock';
 
 describe('StatusMessage', () => {
   it('Test render status', async () => {
     const { result } = renderHook(useCustomFetch);
-    await act(async () => {
-      result.current.setItems([...mockResponse.results]);
-    });
-    await act(async () => {
+    act(() => {
       result.current.searchItems('query');
+    });
+    act(() => {
+      result.current.searchItems('error');
     });
     await act(async () => {
       result.current.searchItems('correct');
     });
     await act(async () => {
+      result.current.setCurrentPage('https://rickandmortyapi.com/api/character?page=0');
+    });
+    await act(async () => {
+      result.current.setCurrentPage('https://rickandmortyapi.com/api/character?page=3');
+    });
+    await act(async () => {
+      result.current.setCurrentPage('https://rickandmortyapi.com/api/character');
+    });
+  });
+  it('Test next page', async () => {
+    const { result } = renderHook(useCustomFetch);
+    act(() => {
+      result.current.nextPage();
+    });
+    act(() => {
       result.current.setPaginationLink((state) => ({
         ...state,
         next: 'https://rickandmortyapi.com/api/character?page=3',
         prev: 'https://rickandmortyapi.com/api/character?page=1',
       }));
     });
-    await act(async () => {
+    act(() => {
       result.current.nextPage();
     });
-    await act(async () => {
+    act(() => {
       result.current.setPaginationLink((state) => ({
         ...state,
-        next: 'https://rickandmortyapi.com/api/character?page=6',
-        prev: 'https://rickandmortyapi.com/api/character?page=4',
+        next: 'https://rickandmortyapi.com/api/character?page=2',
+        prev: null,
       }));
     });
-    await act(async () => {
+    act(() => {
+      result.current.nextPage();
+    });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: 'https://rickandmortyapi.com/api/character?page=69',
+        prev: null,
+      }));
+    });
+    act(() => {
+      result.current.nextPage();
+    });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: 'https://rickandmortyapi.com/api/character?page=666',
+        prev: null,
+      }));
+    });
+    act(() => {
+      result.current.nextPage();
+    });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: 'https://rickandmortyapi.com/api/character?page=123',
+        prev: null,
+      }));
+    });
+    act(() => {
+      result.current.nextPage();
+    });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: 'https://rickandmortyapi.com/api/character?page=124',
+        prev: null,
+      }));
+    });
+    act(() => {
+      result.current.nextPage();
+    });
+  });
+  it('Test prev page', async () => {
+    const { result } = renderHook(useCustomFetch);
+    act(() => {
       result.current.prevPage();
     });
-    await act(async () => {
-      result.current.setNotFoundMessage('message');
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: 'https://rickandmortyapi.com/api/character?page=3',
+        prev: 'https://rickandmortyapi.com/api/character?page=1',
+      }));
     });
-    await act(async () => {
-      result.current.totalReset('message');
+    act(() => {
+      result.current.prevPage();
     });
-    await act(async () => {
-      result.current.totalUpdate({ ...mockResponse });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: null,
+        prev: 'https://rickandmortyapi.com/api/character?page=2',
+      }));
     });
-    await act(async () => {
-      result.current.setCurrentPage('https://rickandmortyapi.com/api/character?page=3');
+    act(() => {
+      result.current.prevPage();
     });
-    await act(async () => {
-      result.current.setPages((state) => ({ ...state, current: null, next: null, prev: null }));
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: null,
+        prev: 'https://rickandmortyapi.com/api/character?page=69',
+      }));
     });
+    act(() => {
+      result.current.prevPage();
+    });
+    act(() => {
+      result.current.setPaginationLink((state) => ({
+        ...state,
+        next: null,
+        prev: 'https://rickandmortyapi.com/api/character?page=666',
+      }));
+    });
+    act(() => {
+      result.current.prevPage();
+    });
+  });
+  it('Test useEffect', async () => {
+    const { result } = renderHook(useCustomFetch);
     await act(async () => {
-      result.current.setPages((state) => ({ ...state, current: 2, next: 3, prev: 1 }));
+      result.current.setLocalStorage('error');
+    });
+  });
+  it('Test useEffect', async () => {
+    const { result } = renderHook(useCustomFetch);
+    await act(async () => {
+      result.current.setLocalStorage('query');
+    });
+  });
+  it('Test useEffect', async () => {
+    const { result } = renderHook(useCustomFetch);
+    await act(async () => {
+      result.current.setLocalStorage('correct');
+    });
+  });
+  it('Test render status', async () => {
+    const { result } = renderHook(useCustomFetch);
+    await act(async () => {
+      result.current.searchItems('incorrect');
     });
   });
 });
