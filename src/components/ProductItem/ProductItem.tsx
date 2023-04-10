@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { decapitalize } from '../../utils/stringHelpers';
 import { useAnimation } from '../../hooks/useAnimation';
 import style from './productItem.module.scss';
-import { Modal } from '../Modal/Modal';
-import { ProductItemMore } from '../ProductItemMore/ProductItemMore';
 import { customFetch } from '../../utils/customFetch';
 import { paths } from '../../routers/Paths';
 import { ProductModal } from '../ProductModal/ProductModal';
