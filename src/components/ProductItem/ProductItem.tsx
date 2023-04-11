@@ -27,7 +27,7 @@ export interface Product {
 }
 
 interface ProductItemProps {
-  product: Product;
+  product: Partial<Product>;
 }
 
 function ProductItem({ product: { id, name, status, image } }: ProductItemProps) {
