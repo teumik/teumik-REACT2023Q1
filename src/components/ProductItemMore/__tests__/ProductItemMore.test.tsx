@@ -17,7 +17,7 @@ describe('ProductItemMore', () => {
     const [product] = mockResponse.results;
     render(
       <ProductItemMore
-        product={product}
+        item={product}
         onClose={handler}
       />
     );
@@ -26,7 +26,7 @@ describe('ProductItemMore', () => {
     const [, product] = mockResponse.results;
     render(
       <ProductItemMore
-        product={product}
+        item={product}
         onClose={handler}
       />
     );
@@ -34,7 +34,7 @@ describe('ProductItemMore', () => {
   it('Test render product item open title', () => {
     render(
       <ProductItemMore
-        product={undefined}
+        item={undefined}
         onClose={handler}
       />
     );

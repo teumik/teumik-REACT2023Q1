@@ -17,7 +17,7 @@ function ProductModal({ isPending, showModal, onClose, product }: Props) {
       onClose={onClose}
     >
       <ProductItemMore
-        product={product}
+        item={product}
         onClose={onClose}
       />
     </Modal>

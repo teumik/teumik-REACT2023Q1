@@ -3,12 +3,12 @@ import style from './ProductItemMore.module.scss';
 import { decapitalize } from '../../utils/stringHelpers';
 
 interface Props {
-  product: Product | undefined;
+  item: Product | undefined;
   onClose: () => void;
 }
 
-function ProductItemMore({ product, onClose }: Props) {
-  if (!product) {
+function ProductItemMore({ item, onClose }: Props) {
+  if (!item) {
     return (
       <>
         <button
@@ -36,7 +36,7 @@ function ProductItemMore({ product, onClose }: Props) {
     location: { name: locationName },
     episode,
     created,
-  } = product;
+  } = item;
 
   return (
     <>
@@ -83,8 +83,8 @@ function ProductItemMore({ product, onClose }: Props) {
           <div className={style.list__container}>
             <span />
             <ul className={style.episodes}>
-              {episode.map((item) => (
-                <li key={item}>Episone #{item.split('/').at(-1)}</li>
+              {episode.map((series) => (
+                <li key={series}>Episone #{series.split('/').at(-1)}</li>
               ))}
             </ul>
             <span />

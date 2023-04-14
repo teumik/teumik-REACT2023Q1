@@ -60,7 +60,7 @@ describe('ProductItem', () => {
           onClose={handler}
         >
           <ProductItemMore
-            product={mock}
+            item={mock}
             onClose={handler}
           />
         </Modal>
