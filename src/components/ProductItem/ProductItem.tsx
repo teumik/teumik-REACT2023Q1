@@ -11,13 +11,26 @@ interface CharacterLocation {
   url: string;
 }
 
+enum Genders {
+  'Female',
+  'Male',
+  'Genderless',
+  'unknown',
+}
+
+enum Status {
+  'Dead',
+  'Alive',
+  'unknown',
+}
+
 export interface Product {
   id: number;
   name: string;
-  status: 'Dead' | 'Alive' | 'unknown';
+  status: keyof typeof Status;
   species: string;
   type: string;
-  gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
+  gender: keyof typeof Genders;
   origin: CharacterLocation;
   location: CharacterLocation;
   image: string;
