@@ -25,6 +25,19 @@ function ProductItemMore({ product, onClose }: Props) {
     );
   }
 
+  const {
+    image,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    origin: { name: originName },
+    location: { name: locationName },
+    episode,
+    created,
+  } = product;
+
   return (
     <>
       <button
@@ -37,42 +50,40 @@ function ProductItemMore({ product, onClose }: Props) {
       </button>
       <article className={style.product}>
         <picture className={style.picture}>
-          <source srcSet={product.image} />
+          <source srcSet={image} />
           <img
-            src={product.image}
-            alt={product.name}
+            src={image}
+            alt={name}
             loading="lazy"
           />
         </picture>
         <div className={style.description}>
-          <h3>{product.name}</h3>
-          <span className={`${style.status} ${style[decapitalize(product.status)]}`}>
-            {product.status}
-          </span>
+          <h3>{name}</h3>
+          <span className={`${style.status} ${style[decapitalize(status)]}`}>{status}</span>
         </div>
         <span>
-          Species: <span>{product.species}</span>
+          Species: <span>{species}</span>
         </span>
-        {product.type && (
+        {type && (
           <span>
-            Type: <span>{product.type}</span>
+            Type: <span>{type}</span>
           </span>
         )}
         <span>
-          Gender: <span>{product.gender}</span>
+          Gender: <span>{gender}</span>
         </span>
         <span>
-          Origin: <span>{product.origin.name}</span>
+          Origin: <span>{originName}</span>
         </span>
         <span>
-          Location: <span>{product.location.name}</span>
+          Location: <span>{locationName}</span>
         </span>
         <span>
           Episodes:
           <div className={style.list__container}>
             <span />
             <ul className={style.episodes}>
-              {product.episode.map((item) => (
+              {episode.map((item) => (
                 <li key={item}>Episone #{item.split('/').at(-1)}</li>
               ))}
             </ul>
@@ -80,7 +91,7 @@ function ProductItemMore({ product, onClose }: Props) {
           </div>
         </span>
         <span>
-          Created: <span>{new Date(product.created).toLocaleString()}</span>
+          Created: <span>{new Date(created).toLocaleString()}</span>
         </span>
       </article>
     </>
