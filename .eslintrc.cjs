@@ -79,6 +79,7 @@ module.exports = {
         imports: 'always-multiline',
         exports: 'never',
         functions: 'never',
+        enums: 'always-multiline',
       },
     ],
     '@typescript-eslint/semi': 'error',
@@ -108,6 +109,14 @@ module.exports = {
       'error',
       {
         assert: 'either',
+      },
+    ],
+
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
       },
     ],
   },
