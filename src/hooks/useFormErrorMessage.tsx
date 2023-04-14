@@ -1,9 +1,22 @@
 import { ErrorMessage } from '../components/CustomForm/ErrorMessage/ErrorMessage';
 
-const useFormErrorMessage = ({ cells }: { cells: number }) => {
+interface Props {
+  cells: number;
+}
+
+const useFormErrorMessage = ({ cells }: Props) => {
+  const count = {
+    key: 0,
+  };
+
   const showErrorMessage = (message?: string) => (
     <>
-      {cells === 2 && <span />}
+      {Array(cells - 1)
+        .fill(0)
+        .map(() => {
+          count.key += 1;
+          return <span key={count.key} />;
+        })}
       <ErrorMessage message={message} />
     </>
   );

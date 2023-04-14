@@ -10,7 +10,7 @@ function ErrorMessage({ message }: ErrorMessageProps) {
       className={style.error}
       data-testid="message"
     >
-      {message || ''}
+      {message || null}
     </div>
   );
 }
