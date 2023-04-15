@@ -1,10 +1,20 @@
+import { useDispatch } from 'react-redux';
+import { ChangeEvent } from 'react';
 import { ErrorsProp, Register } from '../CustomForm';
 import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
+import { formAction } from '../../../redux/slices/formSlice';
 
 interface Props extends Register, ErrorsProp {}
 
 function CountrySelect({ register, errors }: Props) {
   const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
+  const dispatch = useDispatch();
+
+  const countryRef = register('country');
+  const handler = (event: ChangeEvent<HTMLSelectElement>) => {
+    countryRef.onChange(event);
+    dispatch(formAction.setValue({ country: event.target.value }));
+  };
 
   return (
     <>
@@ -12,7 +22,8 @@ function CountrySelect({ register, errors }: Props) {
       <select
         defaultValue=""
         id="country"
-        {...register('country')}
+        {...countryRef}
+        onChange={handler}
       >
         <option
           value=""
