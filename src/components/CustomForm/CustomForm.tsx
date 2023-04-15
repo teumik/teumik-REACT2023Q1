@@ -1,5 +1,4 @@
 import { FieldErrors, SubmitHandler, UseFormRegister, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import style from './customForm.module.scss';
 import { FullNameInput } from './FullNameInput/FullNameInput';
 import { BirthDateInput } from './BirthDateInput/BirthDateInput';
@@ -11,9 +10,9 @@ import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
 import { useSendingStatus } from '../../hooks/useSendingStatus';
 import { useTimeout } from '../../hooks/useTimeout';
-import { RootState } from '../../redux/store';
-import { formAction } from '../../redux/slices/formSlice';
 import { formCardsAction } from '../../redux/slices/formCardsSlice';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
+import { formAction } from '../../redux/slices/formSlice';
 
 export interface FormData {
   agreement: boolean;
@@ -33,14 +32,14 @@ export interface ErrorsProp {
   errors: FieldErrors<FormData>;
 }
 
+export type DefaultValues = Partial<Omit<FormData, 'image'>>;
+
 function CustomForm() {
   const { isSending, toggleSendingStatus } = useSendingStatus();
   const userTimeout = useTimeout();
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
-  const defaultValues = useSelector<RootState, Partial<Omit<FormData, 'image'>>>(
-    ({ form }) => form
-  );
+  const defaultValues = useTypedSelector(({ form }) => form);
 
   const {
     register,

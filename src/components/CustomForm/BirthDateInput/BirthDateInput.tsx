@@ -1,14 +1,14 @@
-import { useDispatch } from 'react-redux';
 import { ChangeEvent } from 'react';
 import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 import { ErrorsProp, Register } from '../CustomForm';
 import { formAction } from '../../../redux/slices/formSlice';
+import { useTypedDispatch } from '../../../redux/hooks';
 
 interface Props extends Register, ErrorsProp {}
 
 function BirthDateInput({ register, errors }: Props) {
   const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const dateRef = register('date');
   const handler = (event: ChangeEvent<HTMLInputElement>) => {

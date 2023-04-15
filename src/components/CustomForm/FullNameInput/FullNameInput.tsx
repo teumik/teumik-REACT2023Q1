@@ -1,14 +1,14 @@
 import { ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import { ErrorsProp, Register } from '../CustomForm';
 import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 import { formAction } from '../../../redux/slices/formSlice';
+import { useTypedDispatch } from '../../../redux/hooks';
 
 interface Props extends Register, ErrorsProp {}
 
 function FullNameInput({ register, errors }: Props) {
   const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const firstNameRef = register('firstName');
   const firstNameHandler = (event: ChangeEvent<HTMLInputElement>) => {

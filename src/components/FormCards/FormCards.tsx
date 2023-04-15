@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
 import style from './formCards.module.scss';
 import { FormCardItem } from '../FormCardItem/FormCardItem';
 import { CustomForm } from '../CustomForm/CustomForm';
-import { RootState } from '../../redux/store';
-import { FormCardsState } from '../../redux/slices/formCardsSlice';
+import { useTypedSelector } from '../../redux/hooks';
 
 function FormCards() {
-  const { cards } = useSelector<RootState, FormCardsState>((state) => state.formCards);
+  const { cards } = useTypedSelector((state) => state.formCards);
 
   return (
     <>

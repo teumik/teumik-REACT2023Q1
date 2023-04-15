@@ -1,15 +1,15 @@
-import { useDispatch } from 'react-redux';
 import { ChangeEvent } from 'react';
 import { capitalize } from '../../../utils/stringHelpers';
 import { Register } from '../CustomForm';
 import { formAction } from '../../../redux/slices/formSlice';
+import { useTypedDispatch } from '../../../redux/hooks';
 
 interface Props extends Register {
   gender: string;
 }
 
 function GenderField({ gender, register }: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const genderRef = register('gender');
   const handler = (event: ChangeEvent<HTMLInputElement>) => {

@@ -1,14 +1,14 @@
-import { useDispatch } from 'react-redux';
 import { ChangeEvent } from 'react';
 import { ErrorsProp, Register } from '../CustomForm';
 import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
 import { formAction } from '../../../redux/slices/formSlice';
+import { useTypedDispatch } from '../../../redux/hooks';
 
 interface Props extends Register, ErrorsProp {}
 
 function CountrySelect({ register, errors }: Props) {
   const { showErrorMessage } = useFormErrorMessage({ cells: 2 });
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const countryRef = register('country');
   const handler = (event: ChangeEvent<HTMLSelectElement>) => {
