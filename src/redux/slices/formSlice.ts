@@ -1,9 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { FormData } from '../../components/CustomForm/CustomForm';
+import { DefaultValues } from '../../components/CustomForm/CustomForm';
 
-export interface FormState extends Partial<Omit<FormData, 'image'>> {
-  image?: string;
-}
+type FormState = DefaultValues;
 
 const formSlice = createSlice({
   name: 'form',
@@ -14,7 +12,7 @@ const formSlice = createSlice({
     },
     reset(state) {
       Object.keys(state).forEach((key) => {
-        delete state[key as keyof FormData];
+        delete state[key as keyof FormState];
       });
     },
   },
