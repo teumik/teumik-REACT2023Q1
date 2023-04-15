@@ -1,4 +1,5 @@
 import { FieldErrors, SubmitHandler, UseFormRegister, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './customForm.module.scss';
 import { FullNameInput } from './FullNameInput/FullNameInput';
 import { BirthDateInput } from './BirthDateInput/BirthDateInput';
@@ -10,11 +11,9 @@ import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
 import { useSendingStatus } from '../../hooks/useSendingStatus';
 import { useTimeout } from '../../hooks/useTimeout';
-import { AddCardMethod } from '../../hooks/useAddCard';
-
-interface CustomFormProps {
-  addCard: AddCardMethod;
-}
+import { RootState } from '../../redux/store';
+import { formAction } from '../../redux/slices/formSlice';
+import { formCardsAction } from '../../redux/slices/formCardsSlice';
 
 export interface FormData {
   agreement: boolean;
@@ -34,9 +33,14 @@ export interface ErrorsProp {
   errors: FieldErrors<FormData>;
 }
 
-function CustomForm({ addCard }: CustomFormProps) {
+function CustomForm() {
   const { isSending, toggleSendingStatus } = useSendingStatus();
   const userTimeout = useTimeout();
+  const dispatch = useDispatch();
+
+  const defaultValues = useSelector<RootState, Partial<Omit<FormData, 'image'>>>(
+    ({ form }) => form
+  );
 
   const {
     register,
@@ -47,12 +51,15 @@ function CustomForm({ addCard }: CustomFormProps) {
     resolver: formValidation,
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
+    defaultValues,
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const url = URL.createObjectURL(data.image[0]);
-    addCard({ ...data, image: url, gender: data.gender });
+    const card = { ...data, image: url, gender: data.gender };
     toggleSendingStatus();
+    dispatch(formCardsAction.addCard({ card }));
+    dispatch(formAction.reset());
     userTimeout(() => {
       reset();
       toggleSendingStatus();
