@@ -13,12 +13,12 @@ function FullNameInput({ register, errors }: Props) {
   const firstNameRef = register('firstName');
   const firstNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
     firstNameRef.onChange(event);
-    dispatch(formAction.setValue({ firstName: event.target.value }));
+    dispatch(formAction.setValue({ fields: { firstName: event.target.value } }));
   };
   const lastNameRef = register('lastName');
   const lastNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
     lastNameRef.onChange(event);
-    dispatch(formAction.setValue({ lastName: event.target.value }));
+    dispatch(formAction.setValue({ fields: { lastName: event.target.value } }));
   };
 
   return (

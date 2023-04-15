@@ -14,7 +14,7 @@ function GenderField({ gender, register }: Props) {
   const genderRef = register('gender');
   const handler = (event: ChangeEvent<HTMLInputElement>) => {
     genderRef.onChange(event);
-    dispatch(formAction.setValue({ gender: event.target.value }));
+    dispatch(formAction.setValue({ fields: { gender: event.target.value } }));
   };
 
   return (

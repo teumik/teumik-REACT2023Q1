@@ -13,7 +13,7 @@ function CountrySelect({ register, errors }: Props) {
   const countryRef = register('country');
   const handler = (event: ChangeEvent<HTMLSelectElement>) => {
     countryRef.onChange(event);
-    dispatch(formAction.setValue({ country: event.target.value }));
+    dispatch(formAction.setValue({ fields: { country: event.target.value } }));
   };
 
   return (

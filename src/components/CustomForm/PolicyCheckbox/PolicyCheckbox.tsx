@@ -15,7 +15,7 @@ function PolicyCheckbox({ styleName, register, errors }: Props) {
   const agreementRef = register('agreement');
   const handler = (event: ChangeEvent<HTMLInputElement>) => {
     agreementRef.onChange(event);
-    dispatch(formAction.setValue({ agreement: event.target.checked }));
+    dispatch(formAction.setValue({ fields: { agreement: event.target.checked } }));
   };
 
   return (

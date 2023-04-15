@@ -39,7 +39,7 @@ function CustomForm() {
   const userTimeout = useTimeout();
   const dispatch = useTypedDispatch();
 
-  const defaultValues = useTypedSelector(({ form }) => form);
+  const defaultValues = useTypedSelector(({ form }) => form.fields);
 
   const {
     register,

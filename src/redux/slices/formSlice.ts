@@ -1,19 +1,27 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { DefaultValues } from '../../components/CustomForm/CustomForm';
 
-type FormState = DefaultValues;
+interface FormState {
+  fields: DefaultValues;
+}
 
 const formSlice = createSlice({
   name: 'form',
-  initialState: <FormState>{},
+  initialState: <FormState>{
+    fields: {},
+  },
   reducers: {
     setValue(state, action: PayloadAction<FormState>) {
-      Object.assign(state, action.payload);
+      const [value] = Object.values(action.payload.fields);
+      const [key] = Object.keys(action.payload.fields);
+      if (!value) {
+        delete state.fields[key as keyof DefaultValues];
+        return;
+      }
+      Object.assign(state.fields, action.payload.fields);
     },
     reset(state) {
-      Object.keys(state).forEach((key) => {
-        delete state[key as keyof FormState];
-      });
+      state.fields = {};
     },
   },
 });

@@ -13,7 +13,7 @@ function BirthDateInput({ register, errors }: Props) {
   const dateRef = register('date');
   const handler = (event: ChangeEvent<HTMLInputElement>) => {
     dateRef.onChange(event);
-    dispatch(formAction.setValue({ date: event.target.value }));
+    dispatch(formAction.setValue({ fields: { date: event.target.value } }));
   };
 
   return (
