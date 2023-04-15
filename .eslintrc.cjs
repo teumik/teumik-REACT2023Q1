@@ -103,7 +103,12 @@ module.exports = {
       },
     ],
     'react/prefer-stateless-function': 'off',
-    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'ignore',
+      },
+    ],
 
     'jsx-a11y/label-has-associated-control': [
       'error',
