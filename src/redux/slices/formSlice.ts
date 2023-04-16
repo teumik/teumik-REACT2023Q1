@@ -6,7 +6,7 @@ interface FormState {
 }
 
 function isStateKey(state: FormState, key: string): key is keyof DefaultValues {
-  return key in state;
+  return key in state.fields;
 }
 
 const formSlice = createSlice({
