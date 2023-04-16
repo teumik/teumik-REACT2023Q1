@@ -7,6 +7,9 @@
       "DOM.Iterable",
       "ESNext",
     ],
+    "paths": {
+      "@/*": ["./src/*"],
+    },
     "sourceMap": true,
     "removeComments": true,
     "skipLibCheck": true,

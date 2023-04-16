@@ -1,6 +1,7 @@
+// eslint-disable-next-line import/extensions, import/no-unresolved
+import { useCustomFetch } from '@/hooks/useCustomFetch';
 import { Pagination } from '../components/Pagination/Pagination';
 import { Products } from '../components/Products/Products';
-import { useCustomFetch } from '../hooks/useCustomFetch';
 
 function Home() {
   const { isPending, pages, pagesCount, prevPage, nextPage, items, searchItems, notFoundMessage } =
