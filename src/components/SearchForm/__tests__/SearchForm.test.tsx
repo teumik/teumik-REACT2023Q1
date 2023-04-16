@@ -1,14 +1,17 @@
-import { describe, it, vi } from 'vitest';
+import { describe, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { SearchForm } from '../SearchForm';
+import { store } from '../../../redux/store';
 
 describe('SearchForm', () => {
   it('Test search input', () => {
-    const handler = vi.fn();
     render(
       <BrowserRouter>
-        <SearchForm searchItems={handler} />
+        <Provider store={store}>
+          <SearchForm />
+        </Provider>
       </BrowserRouter>
     );
     const input = screen.getByRole<HTMLInputElement>('textbox');
@@ -17,10 +20,11 @@ describe('SearchForm', () => {
     expect(input.value).toBe('mens');
   });
   it('Test search submit', () => {
-    const handler = vi.fn();
     render(
       <BrowserRouter>
-        <SearchForm searchItems={handler} />
+        <Provider store={store}>
+          <SearchForm />
+        </Provider>
       </BrowserRouter>
     );
     const form = screen.getByRole('form');
@@ -28,6 +32,5 @@ describe('SearchForm', () => {
     expect(form).toBeInTheDocument();
     expect(button).toBeInTheDocument();
     fireEvent.click(button);
-    expect(handler).toHaveBeenCalledTimes(1);
   });
 });

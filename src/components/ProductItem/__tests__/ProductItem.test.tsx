@@ -1,10 +1,12 @@
 import { describe, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
 import { ProductItem } from '../ProductItem';
 import { mockResponse } from '../../../__mocks__/response.mock';
 import { Modal } from '../../Modal/Modal';
 import { ProductItemMore } from '../../ProductItemMore/ProductItemMore';
+import { store } from '../../../redux/store';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -18,7 +20,11 @@ describe('ProductItem', () => {
   const { results } = mockResponse;
   const [mock] = results;
   it('Test render product item title', () => {
-    render(<ProductItem product={mock} />);
+    render(
+      <Provider store={store}>
+        <ProductItem product={mock} />
+      </Provider>
+    );
     expect(
       screen.getByRole('heading', {
         level: 3,
@@ -26,7 +32,11 @@ describe('ProductItem', () => {
     ).toHaveTextContent(mock.name);
   });
   it('Test product animate function', () => {
-    render(<ProductItem product={mock} />);
+    render(
+      <Provider store={store}>
+        <ProductItem product={mock} />
+      </Provider>
+    );
     fireEvent.click(screen.getByRole('button'));
     expect(screen.getByTestId('animate')).toBeInTheDocument();
     fireEvent.click(screen.getAllByRole('button')[0]);
@@ -37,7 +47,11 @@ describe('ProductItem', () => {
     expect(screen.queryByTestId('animate')).not.toBeInTheDocument();
   });
   it('Test product overlay and modal', () => {
-    render(<ProductItem product={mock} />);
+    render(
+      <Provider store={store}>
+        <ProductItem product={mock} />
+      </Provider>
+    );
     fireEvent.click(screen.getByRole('button'));
     expect(screen.getByTestId('overlay')).toBeInTheDocument();
     fireEvent.click(screen.getByTestId('overlay'));
@@ -45,7 +59,11 @@ describe('ProductItem', () => {
   });
   it('Test product popup close', async () => {
     await act(async () => {
-      render(<ProductItem product={mock} />);
+      render(
+        <Provider store={store}>
+          <ProductItem product={mock} />
+        </Provider>
+      );
     });
     fireEvent.click(screen.getByRole('button'));
     expect(screen.getByTestId('overlay')).toBeInTheDocument();
@@ -54,16 +72,14 @@ describe('ProductItem', () => {
     const handler = vi.fn();
     await act(async () => {
       render(
-        <Modal
-          isPending={false}
-          showModal
-          onClose={handler}
-        >
-          <ProductItemMore
-            item={mock}
+        <Provider store={store}>
+          <Modal
+            showModal
             onClose={handler}
-          />
-        </Modal>
+          >
+            <ProductItemMore onClose={handler} />
+          </Modal>
+        </Provider>
       );
     });
   });
