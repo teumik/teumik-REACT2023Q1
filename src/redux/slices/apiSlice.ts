@@ -27,7 +27,7 @@ interface ApiState {
 }
 
 interface ThunkParams {
-  path?: string;
+  path?: string | null;
   query?: string;
   id?: number;
 }
@@ -95,13 +95,10 @@ const apiSlice = createSlice({
     info: { next: null, prev: null, pages: 0, current: null },
   },
   reducers: {
-    addCard(state, action: PayloadAction<ItemPayload>) {
-      state.items.push(action.payload.item);
-    },
     setSearchQuery(state, action: PayloadAction<Pick<ThunkParams, 'query'>>) {
       state.query = action.payload.query;
     },
-    setCurrentPage(state, action: PayloadAction<string>) {
+    setCurrentPage(state, action: PayloadAction<string | null>) {
       state.info.current = action.payload;
     },
     resetCurrent(state) {
