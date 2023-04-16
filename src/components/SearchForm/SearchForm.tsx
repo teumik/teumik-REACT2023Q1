@@ -1,22 +1,26 @@
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { fetchItems, apiAction } from '../../redux/slices/apiSlice';
+import { paths } from '../../routers/Paths';
 
 function SearchForm() {
   const dispatch = useTypedDispatch();
   const { query } = useTypedSelector((state) => state.api);
+  const [search, setSearch] = useState(query);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(apiAction.resetCurrent());
-    dispatch(fetchItems({}));
+    const params = `?name=${query}`;
+    dispatch(fetchItems({ path: `${paths.serverUrl}/${params}` }));
+    dispatch(apiAction.setSearchQuery({ query: search }));
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    dispatch(apiAction.setSearchQuery({ query: value }));
+    setSearch(value);
   };
 
   return (
@@ -31,7 +35,7 @@ function SearchForm() {
           name="search"
           placeholder="Search by name"
           spellCheck="false"
-          value={query}
+          value={search}
           onChange={onChange}
         />
         <button
