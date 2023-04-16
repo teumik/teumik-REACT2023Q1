@@ -10,6 +10,7 @@ type CustomFetch = <T>({ url, options }: Props) => Promise<T>;
 const customFetch: CustomFetch = ({ url, options }) =>
   fetch(url, options)
     .then((res) => res.json())
-    .then((json) => json);
+    .then((json) => json)
+    .catch((error: Error) => ({ error: error.message }));
 
 export { customFetch };
