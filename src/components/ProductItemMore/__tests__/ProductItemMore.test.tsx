@@ -1,10 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { act } from 'react-dom/test-utils';
+import { mockResponse } from '../../../__mocks__/response.mock';
 import { ProductItemMore } from '../ProductItemMore';
-import { store } from '../../../redux/store';
-import { fetchItemById } from '../../../redux/slices/apiSlice';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -17,21 +14,29 @@ afterEach(() => {
 describe('ProductItemMore', () => {
   const handler = vi.fn();
   it('Test render product item open title', () => {
+    const [product] = mockResponse.results;
     render(
-      <Provider store={store}>
-        <ProductItemMore onClose={handler} />
-      </Provider>
+      <ProductItemMore
+        item={product}
+        onClose={handler}
+      />
     );
   });
-  it('Test render product item open title', async () => {
-    await act(async () => {
-      await store.dispatch(fetchItemById({ id: 2 }));
-    });
-
+  it('Test render product item open title', () => {
+    const [, product] = mockResponse.results;
     render(
-      <Provider store={store}>
-        <ProductItemMore onClose={handler} />
-      </Provider>
+      <ProductItemMore
+        item={product}
+        onClose={handler}
+      />
+    );
+  });
+  it('Test render product item open title', () => {
+    render(
+      <ProductItemMore
+        item={undefined}
+        onClose={handler}
+      />
     );
   });
 });
