@@ -100,6 +100,9 @@ const mockResponseInfo = {
 
 const correctHandlers = [
   rest.get('https://rickandmortyapi.com/api/character', (req, res, ctx) => {
+    if (req.url.searchParams.get('page') === '2') {
+      return res(ctx.status(404), ctx.json(mockResponseInfo));
+    }
     if (req.url.searchParams.get('page') === '124') {
       return res(ctx.status(404), ctx.json(mockResponseWithoutError));
     }
@@ -128,6 +131,15 @@ const correctHandlers = [
   }),
   rest.get('https://rickandmortyapi.com/api/character/1', (_, res, ctx) =>
     res(ctx.status(200), ctx.json(mockResponse.results[0]))
+  ),
+  rest.get('https://rickandmortyapi.com/api/character/2', (_, res, ctx) =>
+    res(ctx.status(200), ctx.json(mockResponse.results[1]))
+  ),
+  rest.get('https://rickandmortyapi.com/api/character/3', (_, res, ctx) =>
+    res(ctx.status(200), ctx.json({ error: 'WRONG ID' }))
+  ),
+  rest.get('https://rickandmortyapi.com/api/characteraaa', (_, res, ctx) =>
+    res(ctx.status(200), ctx.json({ error: 'NOT FOUND' }))
   ),
 ];
 
