@@ -1,29 +1,46 @@
-import { Pages } from '../../hooks/useCustomFetch';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
+import { apiAction, fetchItems } from '../../redux/slices/apiSlice';
 import style from './Pagination.module.scss';
 
-interface Props {
-  pages: Pages;
-  pagesCount: number | undefined;
-  prevPage: () => void;
-  nextPage: () => void;
-}
+function Pagination() {
+  const {
+    info: { prev, next, pages, current },
+  } = useTypedSelector((state) => state.api);
+  const dispatch = useTypedDispatch();
 
-function Pagination({ pages, pagesCount, prevPage, nextPage }: Props) {
+  const getCurrent = () => {
+    const [match] = current?.match(/(?<=page=)\d+/gi) || [1];
+    const page = Number(match);
+    return page;
+  };
+
+  const nextPage = () => {
+    if (!next) return;
+    dispatch(apiAction.setCurrentPage(next));
+    dispatch(fetchItems({ path: next }));
+  };
+
+  const prevPage = () => {
+    if (!prev) return;
+    dispatch(apiAction.setCurrentPage(prev));
+    dispatch(fetchItems({ path: prev }));
+  };
+
   return (
     <div className={style.pagination}>
       <button
         type="button"
-        disabled={!pages.prev && true}
+        disabled={!prev}
         onClick={prevPage}
       >
         Prev
       </button>
       <section>
-        <span>{pages.current}</span>/<span>{pagesCount}</span>
+        <span>{getCurrent()}</span>/<span>{pages}</span>
       </section>
       <button
         type="button"
-        disabled={!pages.next && true}
+        disabled={!next}
         onClick={nextPage}
       >
         Next

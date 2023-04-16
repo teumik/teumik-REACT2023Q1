@@ -1,26 +1,22 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
+import { fetchItems, apiAction } from '../../redux/slices/apiSlice';
 
-interface Props {
-  searchItems: (query: string) => void;
-}
-
-function SearchForm({ searchItems }: Props) {
-  const { getStorageValue, storageEffect } = useLocalStorage('search');
-  const [search, setSearch] = useState(getStorageValue());
-
-  useEffect(() => storageEffect(search));
+function SearchForm() {
+  const dispatch = useTypedDispatch();
+  const { query } = useTypedSelector((state) => state.api);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    searchItems(search);
+    dispatch(apiAction.resetCurrent());
+    dispatch(fetchItems({}));
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSearch(value);
+    dispatch(apiAction.setSearchQuery({ query: value }));
   };
 
   return (
@@ -35,7 +31,7 @@ function SearchForm({ searchItems }: Props) {
           name="search"
           placeholder="Search by name"
           spellCheck="false"
-          value={search}
+          value={query}
           onChange={onChange}
         />
         <button

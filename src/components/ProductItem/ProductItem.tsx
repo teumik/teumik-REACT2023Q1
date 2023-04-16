@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { decapitalize } from '../../utils/stringHelpers';
 import { useAnimation } from '../../hooks/useAnimation';
 import style from './productItem.module.scss';
-import { customFetch } from '../../utils/customFetch';
-import { paths } from '../../routers/Paths';
 import { ProductModal } from '../ProductModal/ProductModal';
+import { useTypedDispatch } from '../../redux/hooks';
+import { fetchItemById } from '../../redux/slices/apiSlice';
 
 interface CharacterLocation {
   name: string;
@@ -46,17 +46,12 @@ interface ProductItemProps {
 function ProductItem({ product: { id, name, status, image } }: ProductItemProps) {
   const { isAnimated, onAnimate } = useAnimation();
   const [showModal, setShowModal] = useState(false);
-  const [isPending, setPending] = useState<boolean>(false);
-  const [item, setItem] = useState<Product>();
+  const dispatch = useTypedDispatch();
 
   const onCLick = async () => {
     onAnimate();
     setShowModal(true);
-    setPending(true);
-    customFetch<Product>({ url: `${paths.serverUrl}/${id}` }).then((data) => {
-      setItem(data);
-      setPending(false);
-    });
+    dispatch(fetchItemById({ id }));
   };
 
   return (
@@ -83,10 +78,9 @@ function ProductItem({ product: { id, name, status, image } }: ProductItemProps)
         </article>
       </button>
       <ProductModal
-        isPending={isPending}
         showModal={showModal}
         onClose={() => setShowModal(false)}
-        product={item}
+        // product={item}
       />
     </>
   );

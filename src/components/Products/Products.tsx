@@ -1,28 +1,31 @@
+import { useEffect } from 'react';
 import style from './products.module.scss';
 import { SearchForm } from '../SearchForm/SearchForm';
-import { Product, ProductItem } from '../ProductItem/ProductItem';
+import { ProductItem } from '../ProductItem/ProductItem';
 import { Preloader } from '../Preloader/Preloader';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
+import { fetchItems } from '../../redux/slices/apiSlice';
 
-interface Props {
-  isPending: boolean;
-  notFoundMessage: string;
-  products: Product[];
-  searchItems: (query: string) => void;
-}
+function Products() {
+  const { items, isPending, error } = useTypedSelector((state) => state.api);
+  const dispatch = useTypedDispatch();
 
-function Products({ isPending, products, searchItems, notFoundMessage }: Props) {
+  useEffect(() => {
+    dispatch(fetchItems({}));
+  }, [dispatch]);
+
   return (
     <>
-      <SearchForm searchItems={searchItems} />
+      <SearchForm />
       {isPending && <Preloader />}
       <section className={style.products}>
-        {notFoundMessage && (
+        {error && (
           <div className={style.message}>
-            <p>{notFoundMessage}</p>
+            <p>{error}</p>
           </div>
         )}
         {!isPending &&
-          products.map((product) => (
+          items.map((product) => (
             <ProductItem
               key={product.id}
               product={product}

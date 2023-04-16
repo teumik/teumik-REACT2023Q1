@@ -1,25 +1,27 @@
-import { Product } from '../ProductItem/ProductItem';
 import style from './ProductItemMore.module.scss';
 import { decapitalize } from '../../utils/stringHelpers';
+import { useTypedSelector } from '../../redux/hooks';
 
 interface Props {
-  item: Product | undefined;
   onClose: () => void;
 }
 
-function ProductItemMore({ item, onClose }: Props) {
+function ProductItemMore({ onClose }: Props) {
+  const { item, error } = useTypedSelector((state) => state.api.modal);
+
   if (!item) {
     return (
       <>
         <button
           type="button"
+          className={style.button}
           onClick={onClose}
           data-testid="close"
         >
           &times;
         </button>
         <article className={style.product}>
-          <h3>No item</h3>
+          <h3>{error}</h3>
         </article>
       </>
     );

@@ -2,14 +2,16 @@ import { createPortal } from 'react-dom';
 import { PropsWithChildren } from 'react';
 import style from './Modal.module.scss';
 import { Preloader } from '../Preloader/Preloader';
+import { useTypedSelector } from '../../redux/hooks';
 
 interface Props extends PropsWithChildren {
-  isPending: boolean;
   showModal: boolean;
   onClose: () => void;
 }
 
-function Modal({ isPending, showModal, onClose, children }: Props) {
+function Modal({ showModal, onClose, children }: Props) {
+  const { isPending } = useTypedSelector((state) => state.api.modal);
+
   if (!showModal) {
     return null;
   }
