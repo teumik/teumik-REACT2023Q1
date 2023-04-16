@@ -15,13 +15,11 @@ function Pagination() {
   };
 
   const nextPage = () => {
-    if (!next) return;
     dispatch(apiAction.setCurrentPage(next));
     dispatch(fetchItems({ path: next }));
   };
 
   const prevPage = () => {
-    if (!prev) return;
     dispatch(apiAction.setCurrentPage(prev));
     dispatch(fetchItems({ path: prev }));
   };
