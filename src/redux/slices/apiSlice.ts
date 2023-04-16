@@ -55,7 +55,7 @@ const fetchItems = createAsyncThunk<
     query,
     info: { current },
   } = getState().api;
-  const params = `?name=${query}`;
+  const params = `?page=${current}&name=${query}`;
   const data = await customFetch<FetchResponse>({
     url: path || current || `${paths.serverUrl}/${params}`,
   });
@@ -103,7 +103,6 @@ const apiSlice = createSlice({
     },
     resetCurrent(state) {
       state.info.current = null;
-      // state.items = [];
     },
   },
   extraReducers: (builder) => {
