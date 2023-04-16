@@ -3,14 +3,16 @@ import { Product } from '../components/ProductItem/ProductItem';
 import { customFetch } from '../utils/customFetch';
 import { paths } from '../routers/Paths';
 
+export interface FetchResponseInfo {
+  count: number;
+  next: string | null;
+  pages: number;
+  prev: string | null;
+}
+
 export interface FetchResponse {
   error?: string;
-  info: {
-    count: number;
-    next: string;
-    pages: number;
-    prev: string | null;
-  };
+  info: FetchResponseInfo;
   results: Product[];
 }
 
@@ -28,11 +30,12 @@ export interface Pages {
 const useCustomFetch = () => {
   const [localStorage, setLocalStorage] = useState(globalThis.localStorage.getItem('search'));
   const [items, setItems] = useState<Product[]>([]);
+  const [notFoundMessage, setNotFoundMessage] = useState<string>('');
+  const [isPending, setPending] = useState<boolean>(false);
+
   const [paginationLink, setPaginationLink] = useState<PaginationLink>({ next: null, prev: null });
   const [pages, setPages] = useState<Pages>({ current: 0, next: null, prev: null });
   const [pagesCount, setPagesCount] = useState<number>(0);
-  const [notFoundMessage, setNotFoundMessage] = useState<string>('');
-  const [isPending, setPending] = useState<boolean>(false);
 
   const totalReset = (message: string) => {
     setPagesCount(0);
