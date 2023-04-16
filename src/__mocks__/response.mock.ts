@@ -136,10 +136,10 @@ const correctHandlers = [
     res(ctx.status(200), ctx.json(mockResponse.results[1]))
   ),
   rest.get('https://rickandmortyapi.com/api/character/3', (_, res, ctx) =>
-    res(ctx.status(200), ctx.json({ error: 'WRONG ID' }))
+    res(ctx.status(404), ctx.json({ error: 'WRONG ID' }))
   ),
   rest.get('https://rickandmortyapi.com/api/characteraaa', (_, res, ctx) =>
-    res(ctx.status(200), ctx.json({ error: 'NOT FOUND' }))
+    res(ctx.status(404), ctx.json({ error: 'NOT FOUND' }))
   ),
 ];
 
