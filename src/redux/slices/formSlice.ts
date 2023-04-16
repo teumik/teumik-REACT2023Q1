@@ -5,6 +5,10 @@ interface FormState {
   fields: DefaultValues;
 }
 
+function isStateKey(state: FormState, key: string): key is keyof DefaultValues {
+  return key in state;
+}
+
 const formSlice = createSlice({
   name: 'form',
   initialState: <FormState>{
@@ -14,8 +18,8 @@ const formSlice = createSlice({
     setValue(state, action: PayloadAction<FormState>) {
       const [value] = Object.values(action.payload.fields);
       const [key] = Object.keys(action.payload.fields);
-      if (!value) {
-        delete state.fields[key as keyof DefaultValues];
+      if (!value && isStateKey(state, key)) {
+        delete state.fields[key];
         return;
       }
       Object.assign(state.fields, action.payload.fields);
