@@ -11,10 +11,8 @@ function Products() {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    if (!items.length) {
-      dispatch(fetchItems({}));
-    }
-  }, [dispatch, items.length]);
+    dispatch(fetchItems({}));
+  }, [dispatch]);
 
   return (
     <>

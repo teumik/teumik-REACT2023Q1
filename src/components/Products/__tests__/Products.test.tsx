@@ -8,7 +8,7 @@ import { fetchItems } from '../../../redux/slices/apiSlice';
 import { paths } from '../../../routers/Paths';
 
 describe('Products', () => {
-  it('Test render products', async () => {
+  it('Test render products with error', async () => {
     render(
       <Provider store={store}>
         <Products />
@@ -18,16 +18,10 @@ describe('Products', () => {
       level: 3,
     });
     expect(titles.length).toEqual(2);
-  });
-  it('Test render products with error', async () => {
+
     await act(async () => {
       await store.dispatch(fetchItems({ path: `${paths.serverUrl}aaa` }));
     });
-
-    render(
-      <Provider store={store}>
-        <Products />
-      </Provider>
-    );
+    expect(screen.getByText(/NOT FOUND/i)).toBeInTheDocument();
   });
 });
