@@ -69,13 +69,6 @@ module.exports = {
     'keyword-spacing': 'off',
 
     '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/indent': [
-      'error',
-      2,
-      {
-        ignoredNodes: ['TSTypeParameterInstantiation'],
-      },
-    ],
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/comma-dangle': [
       'error',
