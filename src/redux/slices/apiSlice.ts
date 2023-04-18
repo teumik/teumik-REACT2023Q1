@@ -90,6 +90,7 @@ const apiSlice = createSlice({
     },
     items: [],
     isPending: false,
+    error: '',
     query: '',
     current: '',
     info: { next: null, prev: null, pages: 0, current: null },
