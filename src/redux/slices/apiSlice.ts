@@ -55,7 +55,7 @@ const fetchItems = createAsyncThunk<
     query,
     info: { current },
   } = getState().api;
-  const params = `?page=${current}&name=${query}`;
+  const params = `?name=${query}`;
   const data = await customFetch<FetchResponse>({
     url: path || current || `${paths.serverUrl}/${params}`,
   });
