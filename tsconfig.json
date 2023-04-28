@@ -5,7 +5,7 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext",
+      "ESNext"
     ],
     "sourceMap": true,
     "removeComments": true,
@@ -23,16 +23,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "noEmitOnError": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   },
   "include": [
     "src",
     ".eslintrc.cjs",
     "vite.config.ts",
-  ],
+],
   "references": [
     {
-      "path": "./tsconfig.node.json",
+      "path": "./tsconfig.node.json"
     }
   ],
 }
