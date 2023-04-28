@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import { paths } from '../routers/Paths';
 
 function useTitlePage() {
-  const [title, setTitle] = useState('');
+  const { pathname } = useLocation();
+  const [title, setTitle] = useState(paths.getPath(pathname));
 
   const titleCallback = useCallback(() => {
-    const { pathname } = globalThis.location;
     setTitle(paths.getPath(pathname));
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     titleCallback();
