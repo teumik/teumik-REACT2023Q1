@@ -5,6 +5,8 @@ function ReactLogo() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 128 128"
+      width={48}
+      height={48}
       className={styles.svg}
     >
       <g>
