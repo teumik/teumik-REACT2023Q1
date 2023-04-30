@@ -4,9 +4,6 @@ import fs from 'node:fs/promises';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 
-const dirname = path.dirname(fileURLToPath(import.meta.url));
-const port = process.env.PORT || 6969;
-
 const ansi = {
   space: () => ' ',
   newLine: () => '\n',
@@ -15,6 +12,13 @@ const ansi = {
   underline: (string: string) => `\x1b[4m${string}\x1b[24m`,
 };
 
+const print = (string: string): void => {
+  process.stdout.write(string);
+};
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const port = process.env.PORT || 6969;
+
 const info: string[] = [
   ansi.newLine(),
   ansi.bold('Local:'),
@@ -22,10 +26,6 @@ const info: string[] = [
   ansi.underline(ansi.cyan(`http://127.0.0.1:${port}`)),
   ansi.newLine(),
 ];
-
-const print = (string: string): void => {
-  process.stdout.write(string);
-};
 
 async function startServer() {
   const app = express();
@@ -51,17 +51,18 @@ async function startServer() {
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
 
-      const stream = render(url, {
+      const { stream, injectPreload } = await render(url, {
         onShellReady() {
           stream.pipe(res);
         },
         onShellError(error: Error) {
           res.status(500);
-          res.setHeader('content-type', 'text/html');
+          res.setHeader('Content-type', 'text/html');
           res.send(`<h1>${error.message}</h1>`);
         },
         onAllReady() {
-          res.write(afterOutlet);
+          const preloaded = afterOutlet.replace('<!--preload-->', injectPreload());
+          res.write(preloaded);
           res.end();
         },
         onError(error: Error) {
