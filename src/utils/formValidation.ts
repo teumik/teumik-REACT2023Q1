@@ -44,16 +44,13 @@ const formValidation: Resolver<FormData> = async (data) => {
     }
     if (formData.date) {
       const currentDate = getCurrentDate();
-      const { year: currentYear, month: currentMonth, day: currentDay } = getParseDate(currentDate);
-      const { year, month, day } = getParseDate(formData.date);
+      const { year: currentYear } = getParseDate(currentDate);
+      const { year } = getParseDate(formData.date);
       const futureDateMessage = 'You are not birth in future';
       if (currentYear < year) {
         setError('date', futureDateMessage);
       }
-      if (currentYear === year && currentMonth < month) {
-        setError('date', futureDateMessage);
-      }
-      if (currentYear === year && currentMonth === month && currentDay < day) {
+      if (currentDate < formData.date) {
         setError('date', futureDateMessage);
       }
       if (Number(year) < Number(currentYear) - 120) {
