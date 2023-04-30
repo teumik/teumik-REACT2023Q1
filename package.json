@@ -13,7 +13,7 @@
     "build:client": "npm run prebuild && vite build --outDir dist/client",
     "build:server": "npm run prebuild && vite build --ssr server/index.ts --outDir dist/server",
     "build": "npm run build:server & npm run build:client",
-    "netlify:build": "vite build",
+    "netlify:build": "npm run lint && tsc && vite build --outDir dist/client & vite build --ssr server/index.ts --outDir dist/server",
     "check-packages": "npx npm-check-updates",
     "update-packages": "npm run check:packages -u && npm run init"
   },
