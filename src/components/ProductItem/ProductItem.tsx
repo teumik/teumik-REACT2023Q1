@@ -3,8 +3,8 @@ import { decapitalize } from '../../utils/stringHelpers';
 import { useAnimation } from '../../hooks/useAnimation';
 import style from './productItem.module.scss';
 import { ProductModal } from '../ProductModal/ProductModal';
-import { useTypedDispatch } from '../../redux/hooks';
-import { fetchItemById } from '../../redux/slices/apiSlice';
+import { useTypedDispatch } from '../../store/hooks';
+import { fetchItemById } from '../../store/slices/apiSlice';
 
 interface CharacterLocation {
   name: string;

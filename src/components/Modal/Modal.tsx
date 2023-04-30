@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { PropsWithChildren } from 'react';
 import style from './Modal.module.scss';
 import { Preloader } from '../Preloader/Preloader';
-import { useTypedSelector } from '../../redux/hooks';
+import { useTypedSelector } from '../../store/hooks';
 
 interface Props extends PropsWithChildren {
   showModal: boolean;

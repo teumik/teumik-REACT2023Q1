@@ -6,7 +6,7 @@ import { ProductItem } from '../ProductItem';
 import { mockResponse } from '../../../__mocks__/response.mock';
 import { Modal } from '../../Modal/Modal';
 import { ProductItemMore } from '../../ProductItemMore/ProductItemMore';
-import { store } from '../../../redux/store';
+import { createStore } from '../../../store/store';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -17,8 +17,10 @@ afterEach(() => {
 });
 
 describe('ProductItem', () => {
+  const store = createStore();
   const { results } = mockResponse;
   const [mock] = results;
+
   it('Test render product item title', () => {
     render(
       <Provider store={store}>

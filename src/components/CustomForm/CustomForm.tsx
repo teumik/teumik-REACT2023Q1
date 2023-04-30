@@ -10,9 +10,9 @@ import { StatusMessage } from './StatusMessage/StatusMessage';
 import { formValidation } from '../../utils/formValidation';
 import { useSendingStatus } from '../../hooks/useSendingStatus';
 import { useTimeout } from '../../hooks/useTimeout';
-import { formCardsAction } from '../../redux/slices/formCardsSlice';
-import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
-import { formAction } from '../../redux/slices/formSlice';
+import { formCardsAction } from '../../store/slices/formCardsSlice';
+import { useTypedDispatch, useTypedSelector } from '../../store/hooks';
+import { formAction } from '../../store/slices/formSlice';
 
 export interface FormData {
   agreement: boolean;

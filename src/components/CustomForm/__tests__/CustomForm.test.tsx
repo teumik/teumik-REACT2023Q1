@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import { CustomForm } from '../CustomForm';
-import { store } from '../../../redux/store';
+import { createStore } from '../../../store/store';
 
 const getFakeDate = (action: string) => {
   const getByValue = (ms: number) => new Date(Date.now() + ms).toISOString().split('T');
@@ -33,6 +33,7 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
+  const store = createStore();
   render(
     <Provider store={store}>
       <CustomForm />

@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { SearchLogo } from '../SearchLogo/SearchLogo';
 import style from './searchForm.module.scss';
-import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
-import { fetchItems, apiAction } from '../../redux/slices/apiSlice';
+import { useTypedDispatch, useTypedSelector } from '../../store/hooks';
+import { fetchItems, apiAction } from '../../store/slices/apiSlice';
 
 function SearchForm() {
   const dispatch = useTypedDispatch();

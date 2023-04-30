@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 import { ErrorsProp, Register } from '../CustomForm';
 import { useFormErrorMessage } from '../../../hooks/useFormErrorMessage';
-import { formAction } from '../../../redux/slices/formSlice';
-import { useTypedDispatch } from '../../../redux/hooks';
+import { formAction } from '../../../store/slices/formSlice';
+import { useTypedDispatch } from '../../../store/hooks';
 
 interface Props extends Register, ErrorsProp {}
 

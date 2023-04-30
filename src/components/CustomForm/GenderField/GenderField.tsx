@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 import { capitalize } from '../../../utils/stringHelpers';
 import { Register } from '../CustomForm';
-import { formAction } from '../../../redux/slices/formSlice';
-import { useTypedDispatch } from '../../../redux/hooks';
+import { formAction } from '../../../store/slices/formSlice';
+import { useTypedDispatch } from '../../../store/hooks';
 
 interface Props extends Register {
   gender: string;

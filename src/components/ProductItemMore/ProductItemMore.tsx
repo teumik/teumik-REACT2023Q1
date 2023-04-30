@@ -1,6 +1,6 @@
 import style from './ProductItemMore.module.scss';
 import { decapitalize } from '../../utils/stringHelpers';
-import { useTypedSelector } from '../../redux/hooks';
+import { useTypedSelector } from '../../store/hooks';
 
 interface Props {
   onClose: () => void;

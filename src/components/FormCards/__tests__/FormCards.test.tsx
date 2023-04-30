@@ -4,10 +4,12 @@ import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 import { FormCards } from '../FormCards';
 import { mockCards } from '../../../__mocks__/cards.mock';
-import { store } from '../../../redux/store';
-import { formCardsAction } from '../../../redux/slices/formCardsSlice';
+import { createStore } from '../../../store/store';
+import { formCardsAction } from '../../../store/slices/formCardsSlice';
 
 describe('FormCards', () => {
+  const store = createStore();
+
   it('Test render cards', async () => {
     const [card] = mockCards;
     act(() => {

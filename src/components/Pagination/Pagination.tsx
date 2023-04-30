@@ -1,5 +1,5 @@
-import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
-import { apiAction, fetchItems } from '../../redux/slices/apiSlice';
+import { useTypedDispatch, useTypedSelector } from '../../store/hooks';
+import { apiAction, fetchItems } from '../../store/slices/apiSlice';
 import style from './Pagination.module.scss';
 
 function Pagination() {

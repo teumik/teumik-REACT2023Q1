@@ -3,8 +3,8 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 import { ProductItemMore } from '../ProductItemMore';
-import { store } from '../../../redux/store';
-import { fetchItemById } from '../../../redux/slices/apiSlice';
+import { createStore } from '../../../store/store';
+import { fetchItemById } from '../../../store/slices/apiSlice';
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -15,7 +15,9 @@ afterEach(() => {
 });
 
 describe('ProductItemMore', () => {
+  const store = createStore();
   const handler = vi.fn();
+
   it('Test render product item open title', () => {
     render(
       <Provider store={store}>

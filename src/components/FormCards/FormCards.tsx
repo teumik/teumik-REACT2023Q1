@@ -1,7 +1,7 @@
 import style from './formCards.module.scss';
 import { FormCardItem } from '../FormCardItem/FormCardItem';
 import { CustomForm } from '../CustomForm/CustomForm';
-import { useTypedSelector } from '../../redux/hooks';
+import { useTypedSelector } from '../../store/hooks';
 
 function FormCards() {
   const { cards } = useTypedSelector((state) => state.formCards);

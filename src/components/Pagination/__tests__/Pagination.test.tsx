@@ -2,12 +2,14 @@ import { describe, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
-import { store } from '../../../redux/store';
-import { fetchItems } from '../../../redux/slices/apiSlice';
+import { createStore } from '../../../store/store';
+import { fetchItems } from '../../../store/slices/apiSlice';
 import { Pagination } from '../Pagination';
 import { paths } from '../../../routers/Paths';
 
 describe('Pagination', () => {
+  const store = createStore();
+
   it('Test render pagination', async () => {
     render(
       <Provider store={store}>
