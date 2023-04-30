@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "init": "npm install",
-    "dev:server": "nodemon -x ts-node-esm server/index.ts",
+    "dev": "nodemon -x ts-node-esm server/index.ts",
     "lint": "npx eslint --fix src && npx prettier -w src",
     "test:coverage": "vitest run --coverage",
     "build": "npm run lint && tsc && npm run test:coverage && vite build",
