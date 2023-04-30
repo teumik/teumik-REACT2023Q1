@@ -9,9 +9,10 @@
     "dev": "nodemon -x ts-node-esm server/index.ts",
     "lint": "npx eslint --fix src && npx prettier -w src",
     "test:coverage": "vitest run --coverage",
-    "build": "npm run lint && tsc && npm run test:coverage && vite build",
-    "build:client": "vite build --outDir dist/client",
-    "build:server": "vite build --ssr server/index.ts --outDir dist/server",
+    "prebuild": "npm run lint && tsc && npm run test:coverage",
+    "build:client": "npm run prebuild && vite build --outDir dist/client",
+    "build:server": "npm run prebuild && vite build --ssr server/index.ts --outDir dist/server",
+    "build": "npm run build:server & npm run build:client",
     "netlify:build": "vite build",
     "check-packages": "npx npm-check-updates",
     "update-packages": "npm run check:packages -u && npm run init"
