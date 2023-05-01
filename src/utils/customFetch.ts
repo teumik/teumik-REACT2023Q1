@@ -11,6 +11,6 @@ const customFetch: CustomFetch = ({ url, options }) =>
   fetch(url, options)
     .then((res) => res.json())
     .then((json) => json)
-    .catch((error: Error) => ({ error: error.message }));
+    .catch(() => ({ error: 'Something went wrong\nTry later' }));
 
 export { customFetch };
