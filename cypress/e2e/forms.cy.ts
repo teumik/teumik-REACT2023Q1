@@ -45,19 +45,19 @@ describe('Form page', () => {
 
   it('Form incorrect ', () => {
     cy.get('[type="submit"]').click();
-    // cy.getByData('form-error-message').first().should('have.text', 'Field cannot be empty');
-    // cy.get('[name="firstName"]').type('a');
-    // cy.get('[type="submit"]').click();
-    // cy.getByData('form-error-message').first().should('have.text', 'First letter must be capital');
-    // cy.get('[name="firstName"]').clear();
-    // cy.get('[name="firstName"]').type('Asd');
-    // cy.get('[type="submit"]').click();
-    // cy.getByData('form-error-message').first().should('have.text', 'Field cannot be empty');
-    // cy.get('[name="lastName"]').type('a');
-    // cy.get('[type="submit"]').click();
-    // cy.getByData('form-error-message').first().should('have.text', 'First letter must be capital');
-    // cy.get('[name="lastName"]').clear();
-    // cy.get('[name="lastName"]').type('Qwe');
-    // cy.get('[type="submit"]').click();
+    cy.getByData('form-error-message').first().should('have.text', 'Field cannot be empty');
+    cy.get('[name="firstName"]').type('a');
+    cy.get('[type="submit"]').click();
+    cy.getByData('form-error-message').first().should('have.text', 'First letter must be capital');
+    cy.get('[name="firstName"]').clear();
+    cy.get('[name="firstName"]').type('Asd');
+    cy.get('[type="submit"]').click();
+    cy.getByData('form-error-message').first().should('have.text', 'Field cannot be empty');
+    cy.get('[name="lastName"]').type('a');
+    cy.get('[type="submit"]').click();
+    cy.getByData('form-error-message').first().should('have.text', 'First letter must be capital');
+    cy.get('[name="lastName"]').clear();
+    cy.get('[name="lastName"]').type('Qwe');
+    cy.get('[type="submit"]').click();
   });
 });

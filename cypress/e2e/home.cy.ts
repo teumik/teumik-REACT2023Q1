@@ -28,8 +28,20 @@ describe('Home page', () => {
     cy.get('input[type="text"]').should('have.value', 'rick');
   });
 
-  it.only('Test item modal', () => {
+  it('Test item modal', () => {
     cy.getByData('item').first().click();
     cy.contains('04.11.2017, 22:48:46');
+    cy.getByData('overlay').click({ force: true });
+    cy.contains('04.11.2017, 22:48:46').should('not.exist');
+  });
+
+  it('Test pagination', () => {
+    cy.getByData('next').click();
+    cy.getByData('prev').click();
+    cy.getByData('prev').click();
+    cy.get('input[type="text"]').type('Agency Director');
+    cy.get('[type="submit"]').click();
+    cy.getByData('prev').should('be.disabled');
+    cy.getByData('next').should('be.disabled');
   });
 });
