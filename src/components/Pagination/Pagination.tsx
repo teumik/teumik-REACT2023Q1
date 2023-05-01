@@ -27,6 +27,7 @@ function Pagination() {
   return (
     <div className={style.pagination}>
       <button
+        data-cy="prev"
         type="button"
         disabled={!prev}
         onClick={prevPage}
@@ -37,6 +38,7 @@ function Pagination() {
         <span>{getCurrent()}</span>/<span>{pages}</span>
       </section>
       <button
+        data-cy="next"
         type="button"
         disabled={!next}
         onClick={nextPage}

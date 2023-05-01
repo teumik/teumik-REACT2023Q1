@@ -17,6 +17,7 @@ function ProductItemMore({ onClose }: Props) {
           className={style.button}
           onClick={onClose}
           data-testid="close"
+          data-cy="close"
         >
           &times;
         </button>

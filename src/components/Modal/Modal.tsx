@@ -23,6 +23,7 @@ function Modal({ showModal, onClose, children }: Props) {
         className={style.overlay}
         onClick={onClose}
         data-testid="overlay"
+        data-cy="overlay"
       />
       <div className={style.modal}>
         {isPending && <Preloader />}
