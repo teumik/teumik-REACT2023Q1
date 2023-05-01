@@ -81,7 +81,6 @@ function ProductItem({ product: { id, name, status, image } }: ProductItemProps)
       <ProductModal
         showModal={showModal}
         onClose={() => setShowModal(false)}
-        // product={item}
       />
     </>
   );
