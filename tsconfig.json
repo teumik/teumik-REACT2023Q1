@@ -7,7 +7,6 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "sourceMap": true,
     "removeComments": true,
     "skipLibCheck": true,
     "esModuleInterop": false,
