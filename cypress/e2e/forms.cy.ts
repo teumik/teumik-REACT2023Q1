@@ -21,7 +21,7 @@ describe('Form page', () => {
     cy.get('[name="agreement"]').should('have.value', 'on').should('not.be.checked');
   });
 
-  it('Form success submit', () => {
+  it('Form success submit and saved', () => {
     cy.get('[name="firstName"]').type('Asd');
     cy.get('[name="lastName"]').type('Qwe');
     cy.get('[name="date"]').type('2002-01-01');
@@ -35,6 +35,11 @@ describe('Form page', () => {
     cy.get('[name="agreement"]').check();
     cy.get('[type="submit"]').click();
     cy.getByData('status-message').should('have.text', 'Form data was saved');
+    cy.getByData('form-cards').should('have.length', 1);
+    cy.contains('About').click();
+    cy.getByData('header').contains('About');
+    cy.contains('Forms').click();
+    cy.getByData('header').contains('Forms');
     cy.getByData('form-cards').should('have.length', 1);
   });
 
