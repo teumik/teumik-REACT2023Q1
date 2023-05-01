@@ -5,19 +5,17 @@ interface Props {
 }
 
 const useFormErrorMessage = ({ cells }: Props) => {
-  const count = {
-    key: 0,
-  };
+  let key = 0;
 
   const showErrorMessage = (message?: string) => (
     <>
       {Array(cells - 1)
         .fill(0)
         .map(() => {
-          count.key += 1;
-          return <span key={count.key} />;
+          key += 1;
+          return <span key={key} />;
         })}
-      <ErrorMessage message={message} />
+      <ErrorMessage message={message || ''} />
     </>
   );
 
