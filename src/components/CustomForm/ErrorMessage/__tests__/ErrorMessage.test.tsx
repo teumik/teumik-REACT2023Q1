@@ -8,7 +8,7 @@ describe('ErrorMessage', () => {
     expect(screen.getByText('error message')).toBeInTheDocument();
   });
   it('Test render error without message', () => {
-    render(<ErrorMessage message={undefined} />);
+    render(<ErrorMessage message="" />);
     expect(screen.getByTestId('message')).toBeEmptyDOMElement();
   });
 });
