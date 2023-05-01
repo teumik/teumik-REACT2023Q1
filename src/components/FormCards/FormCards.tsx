@@ -10,6 +10,7 @@ function FormCards() {
     <>
       <CustomForm />
       <section
+        data-cy="form-cards"
         className={style['cards-container']}
         data-testid="cards-container"
       >

@@ -4,7 +4,7 @@ import { Products } from '../components/Products/Products';
 function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <h1 data-cy="header">Home</h1>
       <Pagination />
       <Products />
     </>

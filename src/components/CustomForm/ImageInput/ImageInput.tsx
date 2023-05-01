@@ -12,6 +12,7 @@ function ImageInput({ styleName, register, errors }: Props) {
     <div className={styleName}>
       <input
         type="file"
+        data-cy="file"
         data-testid="file"
         {...register('image')}
       />

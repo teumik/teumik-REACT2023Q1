@@ -1,8 +1,8 @@
 function About() {
   return (
     <>
-      <h1>About Us</h1>
-      <section>Module 01 React Components</section>
+      <h1 data-cy="header">About Us</h1>
+      <section data-cy="description">Module 01 React Components</section>
     </>
   );
 }

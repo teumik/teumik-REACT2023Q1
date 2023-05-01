@@ -57,6 +57,7 @@ function ProductItem({ product: { id, name, status, image } }: ProductItemProps)
   return (
     <>
       <button
+        data-cy="item"
         className={`${style.container} ${isAnimated && style.animated}`}
         type="button"
         onClick={onCLick}
