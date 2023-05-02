@@ -29,13 +29,17 @@ describe('Home page', () => {
   });
 
   it('Test item modal', () => {
+    const date = new Date('2017-11-04T18:48:46.250Z').toLocaleString();
+
     cy.getByData('item').first().click();
-    cy.contains('04.11.2017, 22:48:46');
+    cy.contains(date);
     cy.getByData('overlay').click({ force: true });
-    cy.contains('04.11.2017, 22:48:46').should('not.exist');
+    cy.contains(date).should('not.exist');
   });
 
   it('Test pagination', () => {
+    const date = new Date('2017-11-04T20:06:54.976Z').toLocaleString();
+
     cy.getByData('prev').should('be.disabled');
     cy.getByData('next').click();
     cy.getByData('item').should('have.length', 20);
@@ -49,6 +53,6 @@ describe('Home page', () => {
     cy.getByData('prev').should('be.disabled');
     cy.getByData('next').should('be.disabled');
     cy.contains('Agency Director').click();
-    cy.contains('05.11.2017, 00:06:54');
+    cy.contains(date);
   });
 });
