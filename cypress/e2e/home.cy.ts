@@ -36,12 +36,19 @@ describe('Home page', () => {
   });
 
   it('Test pagination', () => {
+    cy.getByData('prev').should('be.disabled');
     cy.getByData('next').click();
+    cy.getByData('item').should('have.length', 20);
+    cy.contains('Aqua Morty');
     cy.getByData('prev').click();
-    cy.getByData('prev').click();
+    cy.getByData('prev').should('be.disabled');
     cy.get('input[type="text"]').type('Agency Director');
     cy.get('[type="submit"]').click();
+    cy.contains('Agency Director');
+    cy.getByData('item').should('have.length', 1);
     cy.getByData('prev').should('be.disabled');
     cy.getByData('next').should('be.disabled');
+    cy.contains('Agency Director').click();
+    cy.contains('05.11.2017, 00:06:54');
   });
 });
