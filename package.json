@@ -15,7 +15,7 @@
     "cy:e2e": "npx start-server-and-test dev http://127.0.0.1:6969 cy:run",
     "cy:coverage": "npm run cy:e2e && npm run cy:report",
     "prebuild": "npm run lint && tsc && npm run test:coverage",
-    "build:client": "npm run prebuild && vite build --outDir dist/client",
+    "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr server/index.ts --outDir dist/server",
     "build": "npm run build:client & npm run build:server",
     "netlify:build": "npm run lint && tsc && vite build --outDir dist/client && vite build --ssr server/index.ts --outDir dist/server",
